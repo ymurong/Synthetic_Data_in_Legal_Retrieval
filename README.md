@@ -34,6 +34,7 @@ This project has the following folder structure:
 
 # Project Setup
 
+## Windows
 First, you need to install dependencies.
 ```bash
 python3 -m venv venv
@@ -41,24 +42,23 @@ source  venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-Secondly, you need to install manually some dependencies manually via wheel files, according to your OS.
-* fasttext
-* gensim
-* spacy
-* wordcloud
+> For windows, wheel files here: https://pypi.tuna.tsinghua.edu.cn/simple or https://www.lfd.uci.edu/~gohlke/pythonlibs/
 
-> For windows, wheel files here: https://www.lfd.uci.edu/~gohlke/pythonlibs
-
-Thirdly, some sub dependencies are needed.
+Secondly, some sub dependencies are needed.
 ```bash
 python -m spacy download fr_core_news_md
 ```
 
+# Experiments
 
+## Lexical Models
 
-
-
-
+In order to reproduce the TF-IDF and BM25 models, run:
+```bash
+python scripts/experiments/run_zeroshot_evaluation.py \
+    --retriever {tfidf, bm25} \ 
+    --lem true
+```
 
 
 
