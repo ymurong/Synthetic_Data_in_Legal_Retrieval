@@ -64,6 +64,19 @@ class TFIDFRetriever:
 
 
 class BM25Retriever(TFIDFRetriever):
+    """
+    When experimenting with b and k1, you should first consider their bounds. I would also suggest looking into past experiments to give you a rough feel for the type of experimentation you may be interested in doing — especially if you’re just getting into this for the first time:
+
+    b needs to be between 0 and 1. Many experiments test values in increments of around 0.1 and most experiments seem to show the optimal b to be in a range of 0.3-0.9 (Lipani, Lupu, Hanbury, Aizawa (2015); Taylor, Zaragoza, Craswell, Robertson, Burges (2006); Trotman, Puurula, Burgess (2014); etc.)
+
+    k1 is typically evaluated in the 0 to 3 range, though there’s nothing to stop it from being higher. Many experiments have focused on increments of 0.1 to 0.2 and most experiments seem to show the optimal k1 to be in a range of 0.5-2.0
+
+    For k1, you should be asking, “when do we think a term is likely to be saturated?” For very long documents like books — especially fictional or multi-topic books — it’s very likely to have a lot of different terms several times in a work, even when the term isn’t highly relevant to the work as a whole. For example, “eye” or “eyes” can appear hundreds of times in a fictional book even when “eyes” are not one of the the primary subjects of the book. A book that mentions “eyes” a thousand times, though, likely has a lot more to do with eyes. You may not want terms to be saturated as quickly in this situation, so there’s some suggestion that k1 should generally trend toward larger numbers when the text is a lot longer and more diverse. For the inverse situation, it’s been suggested to set k1 on the lower side. It’s very unlikely that a collection of short news articles would have “eyes” dozens to hundreds of times without being highly related to eyes as a subject.
+
+    For b, you should be asking, “when do we think a document is likely to be very long, and when should that hinder its relevance to a term?” Documents which are highly specific like engineering specifications or patents are lengthy in order to be more specific about a subject. Their length is unlikely to be detrimental to the relevance and b may be more appropriate to be lower. On the opposite side, documents which touch on several different topics in a broad way — news articles (a political article may touch on economics, international affairs, and certain corporations), user reviews, etc. — often benefit by choosing a larger b so that irrelevant topics to a user’s search, including spam and the like, are penalized.
+
+    https://www.elastic.co/fr/blog/practical-bm25-part-3-considerations-for-picking-b-and-k1-in-elasticsearch
+    """
     def __init__(self, retrieval_corpus, k1, b):
         super().__init__(retrieval_corpus)
         self.k1 = k1

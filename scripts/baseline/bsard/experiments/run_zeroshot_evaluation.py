@@ -8,7 +8,8 @@ from gensim.models import KeyedVectors
 
 from utils.eval import Evaluator
 from utils.data import TextPreprocessor
-from models.lexical_models import TFIDFRetriever, BM25Retriever, SWSNRetriever
+from models.lexical_models import TFIDFRetriever, BM25Retriever
+from models.zeroshot_dense_models import Word2vecRetriever, FasttextRetriever, BERTRetriever
 
 
 def main(args):
@@ -27,6 +28,18 @@ def main(args):
         retriever = TFIDFRetriever(retrieval_corpus=articles)
     elif args.retriever == 'bm25':
         retriever = BM25Retriever(retrieval_corpus=articles, k1=1.0, b=0.6)
+    elif args.retriever == 'word2vec':
+        best_checkpoint = abspath(
+            join(__file__, "../embeddings/word2vec/lemmatized/word2vec_frWac_lem_skipgram_d500.bin"))
+        retriever = Word2vecRetriever(model_path_or_name=best_checkpoint, pooling_strategy='mean',
+                                      retrieval_corpus=articles)
+    elif args.retriever == 'fasttext':
+        best_checkpoint = abspath(join(__file__, "../embeddings/fasttext/fasttext_frCc_cbow_d300.bin"))
+        retriever = FasttextRetriever(model_path_or_name=best_checkpoint, pooling_strategy='mean',
+                                      retrieval_corpus=articles)
+    elif args.retriever == 'bert':
+        retriever = BERTRetriever(model_path_or_name='camembert-base', pooling_strategy='mean',
+                                  retrieval_corpus=articles)
 
     print("Running model on test questions...")
     if args.retriever == 'tfidf' or args.retriever == 'bm25':
