@@ -170,7 +170,7 @@ class BiEncoderTrainer(object):
             train_correct, log_correct = 0, 0
 
             self.model.train()
-            for step, batch in enumerate(self.train_dataloader):
+            for step, batch in tqdm(enumerate(self.train_dataloader),position=0, leave=True):
 
                 # Step 1: Move input data to device.
                 q_input_ids = batch['q_input_ids'].to(self.device)
@@ -289,7 +289,7 @@ if __name__ == '__main__':
                                loss_fn=nn.CrossEntropyLoss(),
                                queries_filepath=abspath(join(__file__, "../../../bsard/data/questions_fr_train.csv")),
                                documents_filepath=abspath(join(__file__, "../../../bsard/data/articles_fr.csv")),
-                               batch_size=4,
+                               batch_size=16,
                                # NB: There are ~4500 training samples -> num_steps_per_epoch = 4500/batch_size = .
                                epochs=100,
                                warmup_steps=500,
