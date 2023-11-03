@@ -55,10 +55,13 @@ python -m spacy download fr_core_news_md
 
 In order to reproduce the TF-IDF and BM25 models, run:
 ```bash
-python scripts/experiments/run_zeroshot_evaluation.py \
+python scripts/baseline/bsard/experiments/run_zeroshot_evaluation.py \
     --retriever {tfidf, bm25} \ 
     --lem true
 ```
+
+## Train Dense Model
+
 
 
 
