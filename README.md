@@ -62,8 +62,37 @@ python scripts/baseline/bsard/experiments/run_zeroshot_evaluation.py \
 
 ## Train Dense Model
 ```bash
-
+python scripts/baseline/bsard/experiments/train_biencoder.py
 ```
+
+
+## Domain Adaptation
+### Unsupervisedly train DAM
+The source DAM aims to capture the corpus features in the source domain. Therefore, the REM module trained in this source domain can be generic because it will not be dependent on the source-domain features.
+```bash
+python scripts/disentangled_retriever/adapt/run_adapt_with_mlm.py \
+    --corpus_path "../../data/datasets/fr-msmarco/french_collection.tsv" \
+    --output_dir "./output/adapt-mlm/english-marco/train_rem/dam" \
+    --model_name_or_path camembert-base \
+    --logging_first_step \
+    --logging_steps 50 \
+    --max_seq_length 100 \
+    --per_device_train_batch_size 64 \
+    --gradient_accumulation_steps 4 \
+    --warmup_steps 1000 \
+    --fp16 \
+    --learning_rate 5e-5 \
+    --max_steps 100000 \
+    --dataloader_drop_last \
+    --overwrite_output_dir \
+    --dataloader_num_workers 16 \
+    --weight_decay 0.01 \
+    --lr_scheduler_type "constant_with_warmup" \
+    --save_strategy "steps" \
+    --save_steps 10000 \
+    --optim adamw_torch 
+```
+
 
 
 

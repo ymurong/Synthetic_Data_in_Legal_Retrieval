@@ -13,7 +13,7 @@ from models.trainable_dense_models import BiEncoder
 
 if __name__ == '__main__':
     # 1. Load an already-trained BiEncoder.
-    checkpoint_path = abspath(join(__file__, "../output/training/Nov09-19-11-44_siamese-camembert-base-1000-200-20-22/99")) #"output/training/Nov10-14-11-42_bitower-camembert-base-1000-200-20-22/99"
+    checkpoint_path = abspath(join(__file__,"../../../../../output/training/Nov03-16-00-33/22"))  # "output/training/Nov10-14-11-42_bitower-camembert-base-1000-200-20-22/99"
     model = BiEncoder.load(checkpoint_path)
 
     # 2. Load the test set.

@@ -1,6 +1,8 @@
 venv
 .idea
 *.bin
+fr-msmarco/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
