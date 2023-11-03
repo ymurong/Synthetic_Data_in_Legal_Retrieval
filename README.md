@@ -61,7 +61,9 @@ python scripts/baseline/bsard/experiments/run_zeroshot_evaluation.py \
 ```
 
 ## Train Dense Model
+```bash
 
+```
 
 
 
