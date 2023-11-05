@@ -183,10 +183,12 @@ class BiEncoderTrainer(object):
 
                 if not self.use_amp:
                     # Step 3: Run the forward pass on the input data.
+                    # scores[B,B]: B: batch size (every combination of query and document in batch has been calculated)
                     scores = self.model(q_input_ids=q_input_ids, q_attention_masks=q_attention_masks,
                                         d_input_ids=d_input_ids, d_attention_masks=d_attention_masks)
 
                     # Step 3': Get the labels.
+                    # labels[B]: 0,1,2,3,4,... as label should be the position of relevant pairs
                     labels = torch.tensor(range(len(scores)), dtype=torch.long,
                                           device=scores.device)  # Tensor[batch_size] where x[i] = i (as query q[i] should match with document d[i]).
 
