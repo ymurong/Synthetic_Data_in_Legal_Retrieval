@@ -72,7 +72,7 @@ The source DAM aims to capture the corpus features in the source domain. Therefo
 ```bash
 python scripts/disentangled_retriever/adapt/run_adapt_with_mlm.py \
     --corpus_path "../../data/datasets/fr-msmarco/french_collection.tsv" \
-    --output_dir "./output/adapt-mlm/english-marco/train_rem/dam" \
+    --output_dir "./output/adapt-mlm/french-marco/train_rem/dam" \
     --model_name_or_path camembert-base \
     --logging_first_step \
     --logging_steps 50 \
@@ -93,6 +93,39 @@ python scripts/disentangled_retriever/adapt/run_adapt_with_mlm.py \
     --optim adamw_torch 
 ```
 
+### Supervisedly train REM in contrastive way
+
+```bash
+output_dir="./output/adapt-mlm/french-marco/train_rem/rem-with-hf-dam/contrast"
+
+python 
+    --lora_rank 192 --parallel_reduction_factor 4 --new_adapter_name msmarco \
+    --pooling average \
+    --similarity_metric ip \
+    --qrel_path ./data/datasets/msmarco-passage/qrels.train \
+    --query_path ./data/datasets/msmarco-passage/query.train \
+    --corpus_path ./data/datasets/msmarco-passage/corpus.tsv \
+    --negative ./data/datasets/msmarco-passage/msmarco-hard-negatives.tsv \
+    --output_dir $output_dir \
+    --model_name_or_path jingtao/DAM-bert_base-mlm-msmarco \
+    --logging_steps 100 \
+    --max_query_len 24 \
+    --max_doc_len 128 \
+    --per_device_train_batch_size 32 \
+    --inv_temperature 1 \
+    --gradient_accumulation_steps 1 \
+    --fp16 \
+    --neg_per_query 3 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 5 \
+    --dataloader_drop_last \
+    --overwrite_output_dir \
+    --dataloader_num_workers 0 \
+    --weight_decay 0 \
+    --lr_scheduler_type "constant" \
+    --save_strategy "epoch" \
+    --optim adamw_torch
+```
 
 
 
