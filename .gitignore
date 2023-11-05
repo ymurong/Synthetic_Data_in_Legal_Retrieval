@@ -2,6 +2,7 @@ venv
 .idea
 *.bin
 fr-msmarco/
+fiqa/
 
 
 # Byte-compiled / optimized / DLL files
