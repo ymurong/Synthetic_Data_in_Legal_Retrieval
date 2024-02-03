@@ -25,7 +25,7 @@ if len(sys.argv) < 2:
 filepath = sys.argv[1]
 
 # Save path to store our model
-output_name = ""·
+output_name = ""
 if len(sys.argv) >= 3:
     output_name = "-" + sys.argv[2].replace(" ", "_").replace("/", "_").replace("\\", "_")
 
