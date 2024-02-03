@@ -14,7 +14,7 @@ logging.basicConfig(
 #### /print debug information to stdout
 
 # Train Parameters
-model_name = "camembert/camembert-large"
+model_name = "camembert/camembert-base"
 batch_size = 8
 
 # Input file path (a text file, each line a sentence)
