@@ -14,8 +14,8 @@ logging.basicConfig(
 #### /print debug information to stdout
 
 # Train Parameters
-model_name = "camembert/camembert-base"
-batch_size = 16
+model_name = "camembert-base"
+batch_size = 8
 
 # Input file path (a text file, each line a sentence)
 if len(sys.argv) < 2:
@@ -47,7 +47,7 @@ logging.info("{} train sentences".format(len(train_sentences)))
 
 ################# Initialize an SBERT model #################
 
-word_embedding_model = models.Transformer(model_name)
+word_embedding_model = models.Transformer(model_name, max_seq_length=350)
 # Apply **cls** pooling to get one fixed sized sentence vector
 pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension(), "cls")
 model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
