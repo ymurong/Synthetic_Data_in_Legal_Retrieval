@@ -15,7 +15,7 @@ logging.basicConfig(
 
 # Train Parameters
 model_name = "camembert/camembert-base"
-batch_size = 8
+batch_size = 16
 
 # Input file path (a text file, each line a sentence)
 if len(sys.argv) < 2:
