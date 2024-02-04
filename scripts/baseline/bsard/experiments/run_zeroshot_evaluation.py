@@ -16,6 +16,7 @@ def main(args):
     print("Loading questions and articles...")
     dfA = pd.read_csv(args.articles_path)
     dfQ_test = pd.read_csv(args.test_questions_path)
+    model_path_or_name = args.model_path_or_name
     ground_truths = dfQ_test['article_ids'].apply(lambda x: list(map(int, x.split(',')))).tolist()
 
     print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
@@ -39,6 +40,9 @@ def main(args):
                                       retrieval_corpus=articles)
     elif args.retriever == 'bert':
         retriever = BERTRetriever(model_path_or_name='camembert-base', pooling_strategy='mean',
+                                  retrieval_corpus=articles)
+    elif args.retriever == 'tsdae':
+        retriever = BERTRetriever(model_path_or_name=model_path_or_name, pooling_strategy='mean',
                                   retrieval_corpus=articles)
 
     print("Running model on test questions...")
@@ -76,7 +80,7 @@ if __name__ == '__main__':
                         )
     parser.add_argument("--retriever",
                         type=str,
-                        choices=["tfidf", "bm25", "word2vec", "fasttext", "bert"],
+                        choices=["tfidf", "bm25", "word2vec", "fasttext", "bert", "tsdae"],
                         required=True,
                         help="The type of model to use for retrieval"
                         )
@@ -84,6 +88,11 @@ if __name__ == '__main__':
                         type=str,
                         default=abspath(join(__file__, "../output/zeroshot/test-run/")),
                         help="Path of the output directory."
+                        )
+    parser.add_argument("--model_path_or_name",
+                        type=str,
+                        default="camembert-base",
+                        help="Path of the model directory."
                         )
     args, _ = parser.parse_known_args()
     main(args)
