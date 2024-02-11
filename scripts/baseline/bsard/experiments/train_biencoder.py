@@ -23,6 +23,8 @@ from utils.data import BSARDataset
 from utils.eval import BiEncoderEvaluator
 from models.trainable_dense_models import BiEncoder
 
+from utils.data import TextPreprocessor
+
 
 class BiEncoderTrainer(object):
     def __init__(self,
@@ -60,6 +62,8 @@ class BiEncoderTrainer(object):
 
         # Datasets.
         documents_df = pd.read_csv(documents_filepath)
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        documents_df['article'] = cleaner.preprocess(documents_df['article'])
         train_queries_df, val_queries_df = self.split_train_val(queries_filepath, train_frac=0.8)
 
         # Training Dataloader.
@@ -102,6 +106,8 @@ class BiEncoderTrainer(object):
     def split_train_val(self, queries_filepath: str, train_frac: float):
         # Load queries dataframe.
         df = pd.read_csv(queries_filepath)
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        df['question'] = cleaner.preprocess(df['question'])
 
         # Extract the duplicated questions to put them in the training set only.
         duplicates = df[df.duplicated(['question'], keep=False)]
