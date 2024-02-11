@@ -29,7 +29,7 @@ output_name = ""
 if len(sys.argv) >= 3:
     output_name = "-" + sys.argv[2].replace(" ", "_").replace("/", "_").replace("\\", "_")
 
-model_output_path = "/content/drive/MyDrive/UVA/Thesis/training/tsdae/output_wo_preprocess/train_tsdae{}-{}".format(output_name, datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+model_output_path = "/content/drive/MyDrive/UVA/Thesis/training/tsdae/output/train_tsdae{}-{}".format(output_name, datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 
 
 ################# Read the train corpus  #################

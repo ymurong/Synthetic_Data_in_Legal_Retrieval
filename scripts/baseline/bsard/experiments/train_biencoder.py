@@ -314,7 +314,7 @@ if __name__ == '__main__':
                                loss_fn=nn.CrossEntropyLoss(),
                                queries_filepath=abspath(join(__file__, "../../../bsard/data/questions_fr_train.csv")),
                                documents_filepath=abspath(join(__file__, "../../../bsard/data/articles_fr.csv")),
-                               batch_size=16,
+                               batch_size=8,
                                # NB: There are ~4500 training samples -> num_steps_per_epoch = 4500/batch_size = .
                                epochs=100,
                                warmup_steps=500,
