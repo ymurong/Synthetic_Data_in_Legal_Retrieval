@@ -280,8 +280,14 @@ if __name__ == '__main__':
                         default="camembert-base",
                         help="Path of the model directory."
                         )
+    parser.add_argument("--output_path",
+                        type=str,
+                        default="output/training",
+                        help="Path of output trained model"
+                        )
     args, _ = parser.parse_known_args()
     model_path_or_name = args.model
+    output_path = args.output_path
 
     # 1. Initialize a new BiEncoder model to train.
     model = BiEncoder(is_siamese=True,
@@ -307,7 +313,8 @@ if __name__ == '__main__':
                                epochs=100,
                                warmup_steps=500,
                                log_steps=10,
-                               use_amp=True)
+                               use_amp=True,
+                               output_path=output_path)
 
     # 3. Launch training.
     trainer.fit()
