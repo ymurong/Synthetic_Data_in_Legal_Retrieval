@@ -1,3 +1,5 @@
+import argparse
+
 from tqdm import tqdm
 from datetime import datetime
 from os.path import abspath, join
@@ -272,9 +274,18 @@ class BiEncoderTrainer(object):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model",
+                        type=str,
+                        default="camembert-base",
+                        help="Path of the model directory."
+                        )
+    args, _ = parser.parse_known_args()
+    model_path_or_name = args.model
+
     # 1. Initialize a new BiEncoder model to train.
     model = BiEncoder(is_siamese=True,
-                      q_model_name_or_path='camembert-base',
+                      q_model_name_or_path=model_path_or_name,
                       truncation=True,
                       max_input_len=1000,
                       chunk_size=200,

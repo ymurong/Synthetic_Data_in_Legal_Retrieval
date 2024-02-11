@@ -1,6 +1,7 @@
 import os
 import json
 from os.path import abspath, join
+import argparse
 
 import torch
 import pandas as pd
@@ -9,11 +10,17 @@ from utils.data import BSARDataset
 from utils.eval import BiEncoderEvaluator
 from models.trainable_dense_models import BiEncoder
 
-
-
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--checkpoint_path",
+                        type=str,
+                        default=abspath(join(__file__, "../../../../../output/training/Nov03-16-00-33/22")),
+                        help="Path of the model directory."
+                        )
+    args, _ = parser.parse_known_args()
+
     # 1. Load an already-trained BiEncoder.
-    checkpoint_path = abspath(join(__file__,"../../../../../output/training/Nov03-16-00-33/22"))  # "output/training/Nov10-14-11-42_bitower-camembert-base-1000-200-20-22/99"
+    checkpoint_path = args.checkpoint_path  # "output/training/Nov10-14-11-42_bitower-camembert-base-1000-200-20-22/99"
     model = BiEncoder.load(checkpoint_path)
 
     # 2. Load the test set.
