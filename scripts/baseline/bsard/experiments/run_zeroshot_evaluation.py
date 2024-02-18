@@ -41,10 +41,10 @@ def main(args):
         retriever = FasttextRetriever(model_path_or_name=best_checkpoint, pooling_strategy='mean',
                                       retrieval_corpus=articles)
     elif args.retriever == 'bert':
-        retriever = BERTRetriever(model_path_or_name='camembert-base', pooling_strategy='mean',
+        retriever = BERTRetriever(model_path_or_name='camembert-base', pooling_strategy='cls',
                                   retrieval_corpus=articles)
     elif args.retriever == 'tsdae':
-        retriever = BERTRetriever(model_path_or_name=model_path_or_name, pooling_strategy='mean',
+        retriever = BERTRetriever(model_path_or_name=model_path_or_name, pooling_strategy='cls',
                                   retrieval_corpus=articles)
 
     print("Running model on test questions...")
