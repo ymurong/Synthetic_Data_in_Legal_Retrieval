@@ -21,10 +21,10 @@ def main(args):
 
     print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
     cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
-    # articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
-    # questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
-    articles = dfA['article']
-    questions = dfQ_test['question']
+    articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
+    questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
+    # articles = dfA['article']
+    # questions = dfQ_test['question']
 
     print("Initializing the {} retriever model...".format(args.retriever))
     if args.retriever == 'tfidf':
