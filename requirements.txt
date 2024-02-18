@@ -16,3 +16,4 @@ datasets==1.18.4
 duckdb==0.8.1
 protobuf==3.20.3
 typing_extensions<4.6.0
+nltk
