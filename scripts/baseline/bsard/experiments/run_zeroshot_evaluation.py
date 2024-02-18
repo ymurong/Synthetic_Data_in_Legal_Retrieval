@@ -19,31 +19,44 @@ def main(args):
     model_path_or_name = args.model_path_or_name
     ground_truths = dfQ_test['article_ids'].apply(lambda x: list(map(int, x.split(',')))).tolist()
 
-    print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
-    cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
-    articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
-    questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
-    # articles = dfA['article']
-    # questions = dfQ_test['question']
-
     print("Initializing the {} retriever model...".format(args.retriever))
     if args.retriever == 'tfidf':
+        print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
+        questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
         retriever = TFIDFRetriever(retrieval_corpus=articles)
     elif args.retriever == 'bm25':
+        print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
+        questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
         retriever = BM25Retriever(retrieval_corpus=articles, k1=1.0, b=0.6)
     elif args.retriever == 'word2vec':
+        print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
+        questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
         best_checkpoint = abspath(
             join(__file__, "../embeddings/word2vec/lemmatized/word2vec_frWac_lem_skipgram_d500.bin"))
         retriever = Word2vecRetriever(model_path_or_name=best_checkpoint, pooling_strategy='mean',
                                       retrieval_corpus=articles)
     elif args.retriever == 'fasttext':
+        print("Preprocessing articles and questions (lemmatizing={})...".format(args.lem))
+        cleaner = TextPreprocessor(spacy_model="fr_core_news_md")
+        articles = cleaner.preprocess(dfA['article'], lemmatize=args.lem)
+        questions = cleaner.preprocess(dfQ_test['question'], lemmatize=args.lem)
         best_checkpoint = abspath(join(__file__, "../embeddings/fasttext/fasttext_frCc_cbow_d300.bin"))
         retriever = FasttextRetriever(model_path_or_name=best_checkpoint, pooling_strategy='mean',
                                       retrieval_corpus=articles)
     elif args.retriever == 'bert':
+        articles = dfA['article']
+        questions = dfQ_test['question']
         retriever = BERTRetriever(model_path_or_name='camembert-base', pooling_strategy='cls',
                                   retrieval_corpus=articles)
     elif args.retriever == 'tsdae':
+        articles = dfA['article']
+        questions = dfQ_test['question']
         retriever = BERTRetriever(model_path_or_name=model_path_or_name, pooling_strategy='cls',
                                   retrieval_corpus=articles)
 
