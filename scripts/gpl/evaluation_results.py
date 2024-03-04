@@ -12,7 +12,7 @@ import json
 from typing import List
 import re
 import argparse
-from .sbert import load_sbert
+from sbert import load_sbert
 
 logger = logging.getLogger(__name__)
 
