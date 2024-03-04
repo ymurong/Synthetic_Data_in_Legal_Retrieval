@@ -152,7 +152,7 @@ if __name__ == "__main__":
         "--k_values",
         nargs="+",
         type=int,
-        default=[1, 3, 5, 10, 20, 100],
+        default=[1, 3, 5, 10, 20, 100, 200, 500],
         help="The K values in the evaluation. This will compute nDCG@K, recall@K, precision@K and MAP@K",
     )
     parser.add_argument(
