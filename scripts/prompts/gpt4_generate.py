@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
-    argparser.add_argument('--save', type=str, default='./bsard/gpt4_generate_only_openai.json')
+    argparser.add_argument('--save', type=str, default='./bsard/gpt4_generate_only_openai.jsonl')
     argparser.add_argument('--corpus', type=str, default='./data/articles_fr.csv')
     argparser.add_argument('--key', type=str, required=True)
     argparser.add_argument('--org_key', type=str)
@@ -28,11 +28,11 @@ if __name__ == '__main__':
     prompt = open(args.prompt).read()
 
     ct, ignore = 0, 0
+    line = ""
+    with open(args.save, 'w') as f:
+        f.truncate(0)
 
-    new_json = []
     for index, row in tqdm.tqdm(df_articles.iterrows(), total=df_articles.shape[0]):
-        if ct > 5:
-            break
         article = row['article']
         cur_prompt = prompt.replace('{{Article}}', article)
         row['prompt'] = cur_prompt
@@ -53,11 +53,16 @@ if __name__ == '__main__':
                     # logprobs=40,
                     n=1,
                 )
-                time.sleep(0.5)
+                time.sleep(0.1)
 
                 all_responses = [response.choices[i].message.content for i in range(len(response.choices))]
-                row['all_responses'] = all_responses
-                new_json.append(row.to_dict())
+                row['synthetic_question'] = all_responses[0]
+                line += (json.dumps(row.to_dict())+ "\n")
+                if ct % 10 == 0:
+                    with open(args.save, 'a') as f:
+                        f.write(line)
+                        f.flush()
+                        line = ""
                 ct += 1
                 break
             except Exception as e:
@@ -70,5 +75,4 @@ if __name__ == '__main__':
                     break
 
     print('ignored total', ignore)
-    with open(args.save, 'w') as f:
-        json.dump(new_json, f, indent=4)
+
