@@ -1,0 +1,11 @@
+You will be given one belgian statutory law article in French.
+
+Your task is to ask 1 relevant question in French that can be answered by the given statutory law article.
+
+
+Statutory Law Article:
+
+{{Article}}
+
+
+Question[French]:
