@@ -29,8 +29,6 @@ if __name__ == '__main__':
 
     ct, ignore = 0, 0
     line = ""
-    with open(args.save, 'w') as f:
-        f.truncate(0)
 
     for index, row in tqdm.tqdm(df_articles[6271:].iterrows(), total=df_articles.shape[0]):
         article = row['article']
