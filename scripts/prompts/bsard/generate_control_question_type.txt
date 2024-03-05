@@ -2,6 +2,8 @@ You will be given one belgian statutory law article in French.
 
 Your task is to ask 1 relevant question in French that can be answered by the given statutory law article.
 
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
 Statutory Law Article:
 
 {{Article}}

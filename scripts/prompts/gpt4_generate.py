@@ -9,7 +9,7 @@ import os
 if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
+    argparser.add_argument('--prompt', type=str, default='./bsard/generate_control_question_type_describe.txt')
     argparser.add_argument('--save', type=str, default='./bsard/gpt4_generate_only_openai.jsonl')
     argparser.add_argument('--corpus', type=str, default='./data/articles_fr.csv')
     argparser.add_argument('--key', type=str, required=True)
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     with open(args.save, 'w') as f:
         f.truncate(0)
 
-    for index, row in tqdm.tqdm(df_articles.iterrows(), total=df_articles.shape[0]):
+    for index, row in tqdm.tqdm(df_articles[100:200].iterrows(), total=df_articles.shape[0]):
         article = row['article']
         cur_prompt = prompt.replace('{{Article}}', article)
         row['prompt'] = cur_prompt
