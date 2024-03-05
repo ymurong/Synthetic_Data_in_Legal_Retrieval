@@ -32,7 +32,7 @@ if __name__ == '__main__':
     with open(args.save, 'w') as f:
         f.truncate(0)
 
-    for index, row in tqdm.tqdm(df_articles[100:200].iterrows(), total=df_articles.shape[0]):
+    for index, row in tqdm.tqdm(df_articles.iterrows(), total=df_articles.shape[0]):
         article = row['article']
         cur_prompt = prompt.replace('{{Article}}', article)
         row['prompt'] = cur_prompt
