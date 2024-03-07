@@ -56,8 +56,8 @@ python -m spacy download fr_core_news_md
 ```
 
 ## EDA
-* [Exploratory Data Analysis (Before Experimentation)](scripts/eda/Exploratory Data Analysis.ipynb)
-* [(WIP) Exploratory Data Analysis (After Experimentation)](scripts/eda/Exploratory Data Analysis(with openai).ipynb)
+* [Exploratory Data Analysis (Before Experimentation)](scripts/eda/Exploratory_Data_Analysis(Before_Experimentation).ipynb)
+* [(WIP) Exploratory Data Analysis (After Experimentation)](scripts/eda/Exploratory_Data_Analysis(After_Experimentation).ipynb)
 
 
 ## Methodology
