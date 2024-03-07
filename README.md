@@ -1,6 +1,6 @@
 # Syntactical Structure Matters: Enhancing French Statutory Article Retrieval with GPT-Engineered Synthetic Questions
 
-The goal of this thesis is to enhance the french statutory article retrieval performance through optimized query generation in order to decrease the reliance on human provided labelled examples. The collection of large-scale, high-quality annotated datasets especially in closed domains like legal text is not only time-consuming but also entails significant expenses. \cite{louis-spanakis-2022-statutory} This has constituted a significant bottleneck for various legal IR and natural language processing (NLP) tasks. \cite{ganguly2023legal} 
+The goal of this thesis is to enhance the french statutory article retrieval performance through optimized query generation in order to decrease the reliance on human provided labelled examples. The collection of large-scale, high-quality annotated datasets especially in closed domains like legal text is not only time-consuming but also entails significant expenses.  This has constituted a significant bottleneck for various legal IR and natural language processing (NLP) tasks.
 
 For this, we aim to explore the impact of syntactical structure differences of synthetic questions on legal domain adaptation and provide guidelines on how to use LLMs for better statutory retrieval performance in a semi-supervised way. The central research question that is answered during this research
 is as follows:
