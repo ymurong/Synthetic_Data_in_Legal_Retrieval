@@ -58,38 +58,41 @@ def generate_queries(df_sampled_articles, save_path):
         article = row['article']
         cur_prompt = prompt.replace('{{Article}}', article)
         row['prompt'] = cur_prompt
-        try:
-            response = client.chat.completions.create(
-                model=args.model,
-                messages=[
-                    {"role": "system", "content": "You are an expert in statutory law."},
-                    {"role": "user", "content": cur_prompt}
-                ],
-                temperature=1,
-                max_tokens=args.max_len,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-                stop=None,
-                # logprobs=40,
-                n=1,
-            )
-            time.sleep(0.1)
+        while True:
+            try:
+                response = client.chat.completions.create(
+                    model=args.model,
+                    messages=[
+                        {"role": "system", "content": "You are an expert in statutory law."},
+                        {"role": "user", "content": cur_prompt}
+                    ],
+                    temperature=1,
+                    max_tokens=args.max_len,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0,
+                    stop=None,
+                    # logprobs=40,
+                    n=1,
+                )
+                time.sleep(0.1)
 
-            all_responses = [response.choices[i].message.content for i in range(len(response.choices))]
-            row['synthetic_question'] = all_responses[0]
-            df_row = row[['synthetic_question', 'id']].to_frame().T.rename(columns={'id': 'article_ids'})
-            # Append the Series as a new row to the DataFrame
-            final_df = pd.concat([final_df, df_row], ignore_index=True)
-        except Exception as e:
-            print(e)
-            if ("limit" in str(e)):
-                time.sleep(3)
-            else:
-                ignore += 1
-                print('ignored', ignore)
+                all_responses = [response.choices[i].message.content for i in range(len(response.choices))]
+                row['synthetic_question'] = all_responses[0]
+                df_row = row[['synthetic_question', 'id']].to_frame().T.rename(columns={'id': 'article_ids'})
+                # Append the Series as a new row to the DataFrame
+                final_df = pd.concat([final_df, df_row], ignore_index=True)
                 break
+            except Exception as e:
+                print(e)
+                if ("limit" in str(e)):
+                    time.sleep(3)
+                else:
+                    ignore += 1
+                    print('ignored', ignore)
+                    break
     final_df.to_csv(save_path, header=True, index=True, quoting=csv.QUOTE_NONNUMERIC, quotechar='"')
+    print(f"{save_path} generated!")
 
 
 if __name__ == '__main__':
