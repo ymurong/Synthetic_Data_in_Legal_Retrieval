@@ -4,9 +4,10 @@ import tqdm
 import time
 import pandas as pd
 import csv
+import math
 
 
-def get_random_sample(df, seed, selected_indices):
+def get_random_sample(df, seed, selected_indices, num_samples):
     """
     Get a 10% random sample from the DataFrame without selecting previously picked rows.
 
@@ -21,7 +22,7 @@ def get_random_sample(df, seed, selected_indices):
     return df.drop(selected_indices).sample(frac=0.05, random_state=seed)
 
 
-def iterative_sampling(df, iterations, initial_seed=42):
+def iterative_sampling(df, iterations, frac=0.05, initial_seed=42):
     """
     Iteratively sample 10% of the DataFrame, ensuring no repetition and reproducibility.
 
@@ -36,9 +37,10 @@ def iterative_sampling(df, iterations, initial_seed=42):
     seed = initial_seed
     selected_indices = set()
     sampled_dfs = []
+    num_rows = math.floor(df.shape[0] * frac)
 
     for _ in range(iterations):
-        sample_df = get_random_sample(df, seed, selected_indices)
+        sample_df = get_random_sample(df, seed, selected_indices, num_samples=num_rows)
         selected_indices.update(sample_df.index)
         sampled_dfs.append(sample_df)
         seed += 1
@@ -96,10 +98,12 @@ if __name__ == '__main__':
     argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/simple-ask')
     argparser.add_argument('--corpus', type=str, default='./data/articles_fr.csv')
-    argparser.add_argument('--key', type=str, default='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')
-    argparser.add_argument('--org_key', type=str, default='org-ViWmGBWyZw44MQvxg2djVAff')
+    argparser.add_argument('--key', type=str, required=True)
+    argparser.add_argument('--org_key', type=str)
     argparser.add_argument("--max_len", type=int, default=200)
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
+    argparser.add_argument('--frac', type=float, default=0.05)
+    argparser.add_argument('--iterations', type=int, default=20)
     args = argparser.parse_args()
 
     client = OpenAI(
@@ -109,8 +113,9 @@ if __name__ == '__main__':
     )
 
     df_articles = pd.read_csv(args.corpus)
-    sampled_articles = iterative_sampling(df=df_articles, iterations=20)
+    sampled_articles = iterative_sampling(df=df_articles, iterations=args.iterations, frac=args.frac)
     prompt = open(args.prompt).read()
 
     for idx, df_partial_sampled_articles in enumerate(sampled_articles):
-        generate_queries(df_sampled_articles=df_partial_sampled_articles, save_path=f"{args.save_folder}/train-{idx}.csv")
+        generate_queries(df_sampled_articles=df_partial_sampled_articles,
+                         save_path=f"{args.save_folder}/train-{idx}.csv")
