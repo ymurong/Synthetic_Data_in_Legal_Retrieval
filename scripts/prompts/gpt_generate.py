@@ -101,13 +101,13 @@ if __name__ == '__main__':
     argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/simple-ask')
     argparser.add_argument('--corpus', type=str, default='./data/articles_fr.csv')
-    argparser.add_argument('--key', type=str, required=True)
-    argparser.add_argument('--org_key', type=str)
+    argparser.add_argument('--key', type=str, default="sss")
+    argparser.add_argument('--org_key', type=str, default="ss")
     argparser.add_argument("--max_len", type=int, default=200)
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
     argparser.add_argument('--frac', type=float, default=0.05)
     argparser.add_argument('--iterations', type=int, default=20)
-    argparser.add_argument('--exclude_index', type=str, default="")
+    argparser.add_argument('--exclude_index', type=str, default="0,1")
     args = argparser.parse_args()
 
     client = OpenAI(
@@ -122,6 +122,6 @@ if __name__ == '__main__':
 
     for idx, df_partial_sampled_articles in enumerate(sampled_articles):
         index_exclude = args.exclude_index.split(",")
-        if idx not in index_exclude:
+        if str(idx) not in index_exclude:
             generate_queries(df_sampled_articles=df_partial_sampled_articles,
                              save_path=f"{args.save_folder}/train-{idx}.csv")
