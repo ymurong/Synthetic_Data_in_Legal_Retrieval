@@ -122,6 +122,6 @@ if __name__ == '__main__':
 
     for idx, df_partial_sampled_articles in enumerate(sampled_articles):
         index_exclude = args.exclude_index.split(",")
-        if (idx + 1) not in index_exclude:
+        if idx not in index_exclude:
             generate_queries(df_sampled_articles=df_partial_sampled_articles,
                              save_path=f"{args.save_folder}/train-{idx}.csv")
