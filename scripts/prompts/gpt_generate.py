@@ -19,7 +19,7 @@ def get_random_sample(df, seed, selected_indices, num_samples):
     Returns:
     pd.DataFrame: A 5% random sample of the DataFrame.
     """
-    return df.drop(selected_indices).sample(frac=0.05, random_state=seed)
+    return df.drop(selected_indices).sample(n=num_samples, random_state=seed)
 
 
 def iterative_sampling(df, iterations, frac=0.05, initial_seed=42):
