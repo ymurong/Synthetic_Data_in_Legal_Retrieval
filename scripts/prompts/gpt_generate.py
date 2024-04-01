@@ -107,7 +107,7 @@ if __name__ == '__main__':
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
     argparser.add_argument('--frac', type=float, default=0.05)
     argparser.add_argument('--iterations', type=int, default=20)
-    argparser.add_argument('--exclude_index', type=list, default=[])
+    argparser.add_argument('--exclude_index', type=str, default="")
     args = argparser.parse_args()
 
     client = OpenAI(
@@ -121,6 +121,7 @@ if __name__ == '__main__':
     prompt = open(args.prompt).read()
 
     for idx, df_partial_sampled_articles in enumerate(sampled_articles):
-        if (idx + 1) not in argparser.exclude_index:
+        index_exclude = argparser.exclude_index.split(",")
+        if (idx + 1) not in index_exclude:
             generate_queries(df_sampled_articles=df_partial_sampled_articles,
                              save_path=f"{args.save_folder}/train-{idx}.csv")
