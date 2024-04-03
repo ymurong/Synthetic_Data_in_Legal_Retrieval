@@ -1,0 +1,19 @@
+You will be given one belgian statutory law article in French.
+
+Your task is to first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de règlement extrajudiciaire d'un litige de consommation par le Service de médiation pour le consommateur est gratuit.,federal,Code de Droit Economique,Règlement extrajudiciaire des litiges de consommation,,: le service de médiation pour le consommateur,Compétences,Le règlement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,"Règlement extrajudiciaire des litiges de consommation, : le service de médiation pour le consommateur, Compétences, Le règlement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dépose plainte auprès d'un médiateur. L'entreprise est située en Belgique. [question] Dois-je payer pour déposer plainte devant le médiateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternité n'est pas établie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternité visée au chapitre 2\/1 n'est pas non plus établie, elle peut l'être par un jugement prononcé par le tribunal de la famille, aux conditions fixées à l'article 332quinquies.Si le défendeur est marié et si l'enfant a été conçu pendant le mariage par une femme dont il n'est pas l'époux, le jugement qui établit la filiation doit être signifié à l'époux ou à l'épouse. Jusqu'à cette signification, il n'est opposable ni à l'époux ou l'épouse, ni aux enfants nés du mariage avec le défendeur ou adoptés par les deux époux.
+
+Question[French]: [context] Les parents ne sont pas mariés ensemble. [question] Peut-on m'obliger à établir un lien de filiation avec mon enfant si ni moi ni la mère ne sommes mariés ?
+
+Statutory Law Article: {{Article}}
+
+Question[French]:
