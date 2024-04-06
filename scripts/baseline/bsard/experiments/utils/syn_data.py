@@ -80,7 +80,7 @@ class BSARDataset(Dataset):
 
     def get_one_to_one_relevant_pairs(self, queries: pd.DataFrame) -> List[Tuple[int, int]]:
         return (queries
-                .assign(article_ids=lambda d: str(d['article_ids']).split(','))
+                .assign(article_ids=lambda d: d['article_ids'].astype(str).str.split(","))
                 .set_index(queries.columns.difference(['article_ids']).tolist())['article_ids']
                 .apply(pd.Series)
                 .stack()
