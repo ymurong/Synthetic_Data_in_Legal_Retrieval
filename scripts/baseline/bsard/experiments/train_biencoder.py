@@ -287,9 +287,21 @@ if __name__ == '__main__':
                         default="output/training",
                         help="Path of output trained model"
                         )
+    parser.add_argument("--queries_filepath",
+                        type=str,
+                        default=abspath(join(__file__, "../../../bsard/data/questions_fr_train.csv")),
+                        help="Path of training queries"
+                        )
+    parser.add_argument("--epochs",
+                        type=int,
+                        default=100,
+                        help="Number of epochs"
+                        )
     args, _ = parser.parse_known_args()
     model_path_or_name = args.model
     output_path = args.output_path
+    queries_filepath = args.queries_filepath
+    epochs = args.epochs
 
     # 1. Initialize a new BiEncoder model to train.
     model = BiEncoder(is_siamese=True,
@@ -308,11 +320,11 @@ if __name__ == '__main__':
     # 2. Initialize the BiEncoder Trainer.
     trainer = BiEncoderTrainer(model=model,
                                loss_fn=nn.CrossEntropyLoss(),
-                               queries_filepath=abspath(join(__file__, "../../../bsard/data/questions_fr_train.csv")),
+                               queries_filepath=queries_filepath,
                                documents_filepath=abspath(join(__file__, "../../../bsard/data/articles_fr.csv")),
                                batch_size=8,
                                # NB: There are ~4500 training samples -> num_steps_per_epoch = 4500/batch_size = .
-                               epochs=100,
+                               epochs=epochs,
                                warmup_steps=500,
                                log_steps=10,
                                use_amp=True,
