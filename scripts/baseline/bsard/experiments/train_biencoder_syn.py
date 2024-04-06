@@ -267,15 +267,19 @@ class BiEncoderTrainer(object):
             if epoch == self.epochs - 1:
                 self.model.save(join(self.output_path, f"{epoch}"))
 
+            if epoch % 10 == 0:
+                # Evaluate model after each epoch.
+                scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3,
+                                        epoch=epoch,
+                                        writer=self.writer)
+
+                pprint.pprint(f'Evaluation: {scores}')
+
             # Report average loss and number of correct predictions.
             print(
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
 
-            # Evaluate model after each epoch.
-            scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
-                           writer=self.writer)
 
-            pprint.pprint(f'Evaluation: {scores}')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
