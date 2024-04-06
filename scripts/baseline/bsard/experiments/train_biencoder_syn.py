@@ -105,7 +105,7 @@ class BiEncoderTrainer(object):
         df = pd.read_csv(queries_filepath)
 
         # Extract the duplicated questions to put them in the training set only.
-        duplicates = df[df.duplicated(['question'], keep=False)]
+        duplicates = df[df.duplicated(['synthetic_question'], keep=False)]
         uniques = df.drop(duplicates.index)
 
         # Compute the fraction of unique questions to place in training set so that these questions completmented by the duplicates sums up to the given 'train_frac' ratio.
