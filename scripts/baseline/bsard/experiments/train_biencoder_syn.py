@@ -1,5 +1,5 @@
 import argparse
-
+import pprint
 from tqdm import tqdm
 from datetime import datetime
 from os.path import abspath, join
@@ -264,7 +264,7 @@ class BiEncoderTrainer(object):
                 global_step += 1
 
             # Evaluate model after each epoch.
-            self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
+            scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
                            writer=self.writer)
 
             # Save the model.
@@ -274,6 +274,7 @@ class BiEncoderTrainer(object):
             print(
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
 
+            pprint.pprint(f'Evaluation: {scores}')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
