@@ -103,6 +103,7 @@ class BiEncoderTrainer(object):
     def split_train_val(self, queries_filepath: str, train_frac: float):
         # Load queries dataframe.
         df = pd.read_csv(queries_filepath)
+        df['id'] = df.index
 
         # Extract the duplicated questions to put them in the training set only.
         duplicates = df[df.duplicated(['synthetic_question'], keep=False)]
