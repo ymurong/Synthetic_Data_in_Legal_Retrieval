@@ -263,16 +263,17 @@ class BiEncoderTrainer(object):
                 # Update global step.
                 global_step += 1
 
-            # Evaluate model after each epoch.
-            scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
-                           writer=self.writer)
-
             # Save the model.
-            self.model.save(join(self.output_path, f"{epoch}"))
+            if epoch == self.epochs - 1:
+                self.model.save(join(self.output_path, f"{epoch}"))
 
             # Report average loss and number of correct predictions.
             print(
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
+
+            # Evaluate model after each epoch.
+            scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
+                           writer=self.writer)
 
             pprint.pprint(f'Evaluation: {scores}')
 
