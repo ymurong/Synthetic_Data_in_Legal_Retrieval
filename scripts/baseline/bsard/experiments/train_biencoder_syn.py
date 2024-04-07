@@ -267,7 +267,7 @@ class BiEncoderTrainer(object):
             if epoch == self.epochs - 1:
                 self.model.save(join(self.output_path, f"{epoch}"))
 
-            if epoch % 10 == 0:
+            if (epoch + 1) % 10 == 0:
                 # Evaluate model after each epoch.
                 scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3,
                                         epoch=epoch,
@@ -310,18 +310,18 @@ if __name__ == '__main__':
     epochs = args.epochs
 
     # 1. Initialize a new BiEncoder model to train.
-    model = BiEncoder(is_siamese=True,
-                      q_model_name_or_path=model_path_or_name,
-                      truncation=True,
-                      max_input_len=1000,
-                      chunk_size=200,
-                      window_size=20,
-                      pooling_mode='cls',
-                      score_fn='dot')
-
-    # 1'. OR load an already-trained BiEncoder.
-    # checkpoint_path = "output/training/Dec14-15-29-56_siamese-camembert-base-1000-200-20-22-fp16/99"
-    # model = BiEncoder.load(checkpoint_path)
+    if model_path_or_name == "camembert-base":
+        model = BiEncoder(is_siamese=True,
+                          q_model_name_or_path=model_path_or_name,
+                          truncation=True,
+                          max_input_len=1000,
+                          chunk_size=200,
+                          window_size=20,
+                          pooling_mode='cls',
+                          score_fn='dot')
+    else:
+        checkpoint_path = model_path_or_name
+        model = BiEncoder.load(checkpoint_path)
 
     # 2. Initialize the BiEncoder Trainer.
     trainer = BiEncoderTrainer(model=model,
