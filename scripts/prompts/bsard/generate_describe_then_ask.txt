@@ -4,8 +4,6 @@ Your task is to first describe the context or information about a situation that
 
 The question should not be longer than 100 words.
 
-Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
-
 Statutory Law Article: {{Article}}
 
 Question[French]:
