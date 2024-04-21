@@ -95,6 +95,19 @@ class BiEncoderEvaluator(Evaluator):
         # Get ground truths.
         all_ground_truths = [self.relevant_pairs[qid] for qid in self.query_ids]
 
+        # for each query, retrieve wrong retrieved pairs
+        all_wrong_retrieved_doc_ids = [list(set(results) - set(truths)) for truths, results in zip(all_ground_truths, all_results)]
+
+        wrong_pairs = dict()
+        for qid, wrong_retrieved_doc_ids in zip(self.query_ids, all_wrong_retrieved_doc_ids):
+            wrong_pairs[f'{qid}'] = wrong_retrieved_doc_ids
+
+        # [difference(truths, res) for truths, res in zip(all_ground_truths, all_results)] => List[List[int]] (wrong_retrieved_doc_ids)
+        # for qid, wrong_retrieved_doc_ids in zip(self.query_ids, all_wrong_retrieved_doc_ids):
+            # write qid, wrong_retrieved_doc_ids to a json file that would be used by another script to do extropolation
+                # Given a article (from wrong_retrieved_doc_ids),. Here is a question (qid) that the answer is not in the statutory article. Please write another question similar to the given question qnd have answers in the statutory article.
+
+        # Compute metrics.
         scores = dict()
         for k in self.metrics_at_k['recall']:
             recall_scalar = self.compute_mean_score(self.recall, all_ground_truths, all_results, k)
@@ -114,4 +127,4 @@ class BiEncoderEvaluator(Evaluator):
                 writer.add_scalar(f'Val/mrr/mrr_at_{k}', mrr_scalar, epoch)
             scores[f'mrr@{k}'] = mrr_scalar
 
-        return scores
+        return scores, wrong_pairs
