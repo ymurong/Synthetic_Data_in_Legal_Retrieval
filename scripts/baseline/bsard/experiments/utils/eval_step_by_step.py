@@ -95,8 +95,8 @@ class BiEncoderEvaluator(Evaluator):
         # Get ground truths.
         all_ground_truths = [self.relevant_pairs[qid] for qid in self.query_ids]
 
-        # for each query, retrieve wrong retrieved pairs
-        all_wrong_retrieved_doc_ids = [list(set(results) - set(truths)) for truths, results in zip(all_ground_truths, all_results)]
+        # for each query, retrieve wrong retrieved pairs (keep in original order)
+        all_wrong_retrieved_doc_ids = [[item for item in results if item not in truths] for truths, results in zip(all_ground_truths, all_results)]
 
         wrong_pairs = dict()
         for qid, wrong_retrieved_doc_ids in zip(self.query_ids, all_wrong_retrieved_doc_ids):
