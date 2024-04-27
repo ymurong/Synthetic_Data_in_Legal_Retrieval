@@ -77,7 +77,7 @@ class BSARDataset(Dataset):
 
     def get_one_to_many_relevant_pairs(self, queries: pd.DataFrame) -> Dict[str, Set[str]]:
         return queries.set_index('id')['article_ids'].astype(str).str.split(',').apply(
-            lambda x: [int(i) for i in x]).to_dict()
+            lambda x: [int(float(i)) for i in x]).to_dict()
 
     def get_one_to_one_relevant_pairs(self, queries: pd.DataFrame) -> List[Tuple[int, int]]:
         queries = (queries
