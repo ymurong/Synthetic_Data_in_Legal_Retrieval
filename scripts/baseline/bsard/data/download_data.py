@@ -8,3 +8,4 @@ if __name__ == '__main__':
     ref_dataset["articles"].to_csv("articles_fr.csv")
     dataset["train"].to_csv("questions_fr_train.csv")
     dataset["test"].to_csv("questions_fr_test.csv")
+

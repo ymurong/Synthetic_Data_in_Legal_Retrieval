@@ -1,3 +1,4 @@
-Given an article {{Article}}, here is a question {{Question}}, that the answer is not in the statutory article.
-
-Please write another question similar to the given question and have answers in the statutory article.
+Given a statutory article: {{Article}}.
+And here is a question: {{Question}}, that the answer of question is not in the given statutory article.
+Please write another question in French similar to the given question and have answers in the statutory article.
+Question[French]:

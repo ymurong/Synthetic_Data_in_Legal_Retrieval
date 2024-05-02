@@ -6,48 +6,6 @@ import pandas as pd
 import csv
 import math
 
-
-def get_random_sample(df, seed, selected_indices, num_samples):
-    """
-    Get a 10% random sample from the DataFrame without selecting previously picked rows.
-
-    Args:
-    df (pd.DataFrame): The DataFrame to sample from.
-    seed (int): The seed value for reproducibility.
-    selected_indices (set): Set of indices that have been previously selected.
-
-    Returns:
-    pd.DataFrame: A 5% random sample of the DataFrame.
-    """
-    return df.drop(selected_indices).sample(n=num_samples, random_state=seed)
-
-
-def iterative_sampling(df, iterations, frac=0.05, initial_seed=42):
-    """
-    Iteratively sample 10% of the DataFrame, ensuring no repetition and reproducibility.
-
-    Args:
-    df (pd.DataFrame): The DataFrame to sample from.
-    iterations (int): Number of times to perform the sampling.
-    initial_seed (int): The initial seed value for reproducibility.
-
-    Returns:
-    list of pd.DataFrame: A list of DataFrames, each containing a 10% random sample of the original DataFrame.
-    """
-    seed = initial_seed
-    selected_indices = set()
-    sampled_dfs = []
-    num_rows = math.floor(df.shape[0] * frac)
-
-    for _ in range(iterations):
-        sample_df = get_random_sample(df, seed, selected_indices, num_samples=num_rows)
-        selected_indices.update(sample_df.index)
-        sampled_dfs.append(sample_df)
-        seed += 1
-
-    return sampled_dfs
-
-
 def generate_queries(df_sampled_articles, save_path):
     # Initialize an empty DataFrame
     final_df = pd.DataFrame()
@@ -99,15 +57,15 @@ if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
-    argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/simple-ask')
-    argparser.add_argument('--corpus', type=str, default='./data/articles_fr.csv')
+    argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step-by-step')
+    argparser.add_argument('--corpus', type=str, default='./data/top_k_wrong_pairs.csv')
     argparser.add_argument('--key', type=str, default="sss")
     argparser.add_argument('--org_key', type=str, default="ss")
     argparser.add_argument("--max_len", type=int, default=200)
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
     argparser.add_argument('--frac', type=float, default=0.05)
     argparser.add_argument('--iterations', type=int, default=20)
-    argparser.add_argument('--exclude_index', type=str, default="0,1")
+    argparser.add_argument('--exclude_index', type=str, default="")
     args = argparser.parse_args()
 
     client = OpenAI(
@@ -115,12 +73,12 @@ if __name__ == '__main__':
         api_key=args.key,
         organization=args.org_key
     )
+    # read wrong pairs file
+    df_wrong_pairs = pd.read_csv(args.corpus)
 
-    df_articles = pd.read_csv(args.corpus)
-    sampled_articles = iterative_sampling(df=df_articles, iterations=args.iterations, frac=args.frac)
     prompt = open(args.prompt).read()
 
-    for idx, df_partial_sampled_articles in enumerate(sampled_articles):
+    for idx, df_partial_sampled_articles in enumerate(df_wrong_pairs):
         index_exclude = args.exclude_index.split(",")
         if str(idx) not in index_exclude:
             generate_queries(df_sampled_articles=df_partial_sampled_articles,
