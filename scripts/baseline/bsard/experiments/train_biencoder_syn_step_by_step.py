@@ -268,7 +268,7 @@ class BiEncoderTrainer(object):
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
 
             if (epoch + 1) % 10 == 0:
-                self.model.save(join(self.output_path, f"{epoch}"))
+                self.model.save(self.output_path)
 
                 # Evaluate model after each 10 epoch.
                 scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3,
