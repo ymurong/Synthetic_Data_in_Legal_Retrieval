@@ -13,8 +13,6 @@ def generate_queries(df_wrong_pairs, save_path):
     ct, ignore = 0, 0
 
     for index, row in tqdm.tqdm(df_wrong_pairs.iterrows()):
-        if index ==3:
-            break
         question = row['Question']
         article = row['Article']
         cur_prompt = prompt.replace('{{Question}}', question)
@@ -60,13 +58,12 @@ def generate_queries(df_wrong_pairs, save_path):
 if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
+    argparser.add_argument('--prompt', type=str, default='./bsard/extrapolate.txt')
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step_by_step')
     argparser.add_argument('--corpus', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
     argparser.add_argument('--key', type=str, default="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")
     argparser.add_argument('--org_key', type=str, default="org-ViWmGBWyZw44MQvxg2djVAff")
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
-    argparser.add_argument('--index', type=str, default='1')
     argparser.add_argument("--max_len", type=int, default=200)
     args = argparser.parse_args()
 
@@ -81,4 +78,4 @@ if __name__ == '__main__':
     prompt = open(args.prompt).read()
 
     generate_queries(df_wrong_pairs=df_wrong_pairs,
-                     save_path=f"{args.save_folder}/train-{args.index}.csv")
+                     save_path=f"{args.save_folder}/train.csv")
