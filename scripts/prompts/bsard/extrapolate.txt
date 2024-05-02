@@ -1,0 +1,3 @@
+Given an article {{Article}}, here is a question {{Question}}, that the answer is not in the statutory article.
+
+Please write another question similar to the given question and have answers in the statutory article.

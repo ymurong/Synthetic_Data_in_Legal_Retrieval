@@ -295,7 +295,7 @@ if __name__ == '__main__':
                         )
     parser.add_argument("--queries_filepath",
                         type=str,
-                        default=abspath(join(__file__, "../../../bsard/data/questions_fr_train.csv")),
+                        default=abspath(join(__file__, "../../../bsard/data/questions_fr_train_step_by_step.csv")),
                         help="Path of training queries"
                         )
     parser.add_argument("--epochs",

@@ -24,7 +24,7 @@ if __name__ == '__main__':
     model = BiEncoder.load(checkpoint_path)
 
     # 2. Load the test set.
-    test_queries_df = pd.read_csv(abspath(join(__file__, "../../../bsard/data/questions_fr_test.csv")))
+    test_queries_df = pd.read_csv(abspath(join(__file__, "../../../bsard/data/questions_fr_validation_step_by_step.csv")))
     documents_df = pd.read_csv(abspath(join(__file__, "../../../bsard/data/articles_fr.csv")))
     test_dataset = BSARDataset(test_queries_df, documents_df)
 
