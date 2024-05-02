@@ -6,15 +6,19 @@ import pandas as pd
 import csv
 import math
 
-def generate_queries(df_sampled_articles, save_path):
+def generate_queries(df_wrong_pairs, save_path):
     # Initialize an empty DataFrame
     final_df = pd.DataFrame()
     # generate
     ct, ignore = 0, 0
 
-    for index, row in tqdm.tqdm(df_sampled_articles.iterrows()):
-        article = row['article']
-        cur_prompt = prompt.replace('{{Article}}', article)
+    for index, row in tqdm.tqdm(df_wrong_pairs.iterrows()):
+        if index ==3:
+            break
+        question = row['Question']
+        article = row['Article']
+        cur_prompt = prompt.replace('{{Question}}', question)
+        cur_prompt = cur_prompt.replace('{{Article}}', article)
         row['prompt'] = cur_prompt
         while True:
             try:
@@ -37,7 +41,7 @@ def generate_queries(df_sampled_articles, save_path):
 
                 all_responses = [response.choices[i].message.content for i in range(len(response.choices))]
                 row['synthetic_question'] = all_responses[0]
-                df_row = row[['synthetic_question', 'id']].to_frame().T.rename(columns={'id': 'article_ids'})
+                df_row = row[['synthetic_question', 'Article_Id']].to_frame().T.rename(columns={'Article_Id': 'article_ids'})
                 # Append the Series as a new row to the DataFrame
                 final_df = pd.concat([final_df, df_row], ignore_index=True)
                 break
@@ -57,15 +61,13 @@ if __name__ == '__main__':
 
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--prompt', type=str, default='./bsard/generate_only.txt')
-    argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step-by-step')
-    argparser.add_argument('--corpus', type=str, default='./data/top_k_wrong_pairs.csv')
-    argparser.add_argument('--key', type=str, default="sss")
-    argparser.add_argument('--org_key', type=str, default="ss")
-    argparser.add_argument("--max_len", type=int, default=200)
+    argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step_by_step')
+    argparser.add_argument('--corpus', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
+    argparser.add_argument('--key', type=str, default="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")
+    argparser.add_argument('--org_key', type=str, default="org-ViWmGBWyZw44MQvxg2djVAff")
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
-    argparser.add_argument('--frac', type=float, default=0.05)
-    argparser.add_argument('--iterations', type=int, default=20)
-    argparser.add_argument('--exclude_index', type=str, default="")
+    argparser.add_argument('--index', type=str, default='1')
+    argparser.add_argument("--max_len", type=int, default=200)
     args = argparser.parse_args()
 
     client = OpenAI(
@@ -78,8 +80,5 @@ if __name__ == '__main__':
 
     prompt = open(args.prompt).read()
 
-    for idx, df_partial_sampled_articles in enumerate(df_wrong_pairs):
-        index_exclude = args.exclude_index.split(",")
-        if str(idx) not in index_exclude:
-            generate_queries(df_sampled_articles=df_partial_sampled_articles,
-                             save_path=f"{args.save_folder}/train-{idx}.csv")
+    generate_queries(df_wrong_pairs=df_wrong_pairs,
+                     save_path=f"{args.save_folder}/train-{args.index}.csv")
