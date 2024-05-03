@@ -72,7 +72,7 @@ def syntactic_filter(df_questions, topk):
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step_by_step')
-    argparser.add_argument('--extrapolate_queries', type=str, default='./data/extrapolate_queries.csv')
+    argparser.add_argument('--extrapolated_queries', type=str, default='./data/extrapolate_queries.csv')
     argparser.add_argument('--wrong_pairs_to_extrapolate', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
     argparser.add_argument('--syntactic_topk', type=int, default=100)
     argparser.add_argument('--semantic_threshold', type=float, default=0.8)
