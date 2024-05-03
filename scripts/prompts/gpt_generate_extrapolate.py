@@ -78,4 +78,4 @@ if __name__ == '__main__':
     prompt = open(args.prompt).read()
 
     generate_queries(df_wrong_pairs=df_wrong_pairs,
-                     save_path=f"{args.save_folder}/train.csv")
+                     save_path=f"{args.save_folder}/extrapolate_queries.csv")
