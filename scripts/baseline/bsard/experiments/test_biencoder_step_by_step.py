@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     # 5. Save results.
     os.makedirs(checkpoint_path, exist_ok=True)
-    with open(join(checkpoint_path, 'test_scores_fixed.json'), 'w') as fOut:
+    with open(join(checkpoint_path, 'test_scores_fixed_validation.json'), 'w') as fOut:
         json.dump(scores, fOut, indent=2)
 
     with open(join(checkpoint_path, 'wrong_pairs_to_extrapolate.json'), 'w') as fOut:
