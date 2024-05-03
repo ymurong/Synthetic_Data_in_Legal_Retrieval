@@ -24,7 +24,6 @@ from utils.eval import BiEncoderEvaluator
 from models.trainable_dense_models import BiEncoder
 
 
-
 class BiEncoderTrainer(object):
     def __init__(self,
                  model: nn.Module,
@@ -174,7 +173,7 @@ class BiEncoderTrainer(object):
             train_correct, log_correct = 0, 0
 
             self.model.train()
-            for step, batch in tqdm(enumerate(self.train_dataloader),position=0, leave=True):
+            for step, batch in tqdm(enumerate(self.train_dataloader), position=0, leave=True):
 
                 # Step 1: Move input data to device.
                 q_input_ids = batch['q_input_ids'].to(self.device)
@@ -268,8 +267,6 @@ class BiEncoderTrainer(object):
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
 
             if (epoch + 1) % 10 == 0:
-                self.model.save(self.output_path)
-
                 # Evaluate model after each 10 epoch.
                 scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3,
                                         epoch=epoch,
@@ -277,8 +274,9 @@ class BiEncoderTrainer(object):
 
                 pprint.pprint(f'Evaluation: {scores}')
 
-
-
+            if epoch == self.epochs - 1:
+                # only save the model when it is the last round
+                self.model.save(self.output_path)
 
 
 if __name__ == '__main__':
