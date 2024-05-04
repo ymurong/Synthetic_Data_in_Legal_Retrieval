@@ -272,7 +272,7 @@ class BiEncoderTrainer(object):
                                         epoch=epoch,
                                         writer=self.writer)
 
-                pprint.pprint(f'Evaluation: {scores}')
+                pprint.pprint(f'Train Evaluation: {scores}')
 
             if epoch == self.epochs - 1:
                 # only save the model when it is the last round

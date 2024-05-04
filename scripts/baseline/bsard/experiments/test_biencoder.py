@@ -2,6 +2,7 @@ import os
 import json
 from os.path import abspath, join
 import argparse
+import pprint
 
 import torch
 import pandas as pd
@@ -42,4 +43,5 @@ if __name__ == '__main__':
     # 5. Save results.
     os.makedirs(checkpoint_path, exist_ok=True)
     with open(join(checkpoint_path, 'test_scores_fixed.json'), 'w') as fOut:
+        pprint.pprint(f'Test Evaluation: {scores}')
         json.dump(scores, fOut, indent=2)
