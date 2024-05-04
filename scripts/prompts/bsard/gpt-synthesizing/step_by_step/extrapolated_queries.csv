@@ -1,0 +1,211 @@
+"","synthetic_question","article_ids","prompt"
+0,"[context] Mon entreprise a distribué des participations bénéficiaires aux employés pour l'année en cours. [question] Dois-je payer une taxe sur ces sommes réparties à titre de participation bénéficiaire ?",22312,"Given a statutory article: La taxe exigible est calculée sur le montant total des sommes réparties à titre de participation bénéficiaire pour l'année d'imposition.alinéa 2 abrogé.
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: La taxe exigible est calculée sur le montant total des sommes réparties à titre de participation bénéficiaire pour l'année d'imposition.alinéa 2 abrogé
+
+Question[French]:"
+1,"[context] J'investis régulièrement en Bourse et je réalise des gains et pertes sur mes placements. [question] Les plus-values provenant de mes investissements en actions doivent-elles être incluses dans le compte des variations du patrimoine tel que défini par l'article ?",9531,"Given a statutory article: § 1er. Le compte des variations du patrimoine est présenté sous forme de tableaux regroupant les éléments enregistrés dans les comptes ouverts.§ 2. Il comprend :1° les sommes représentant les accroissements d'actif et les diminutions de passif qui sont la contrepartie des dépenses imputées sur le budget;2° les plus-values et les autres augmentations d'actif constatées, en dehors de toute imputation budgétaire;3° les sommes représentant les diminutions d'actif ou les augmentations de passif qui sont la contrepartie des recettes imputées sur le budget;4° les moins-values, les dépréciations, les disparitions d'actif ou les accroissements de passif constatés en dehors de toute imputation budgétaire.§ 3. Les opérations sont récapitulées en groupant en colonnes différentes, celles qui font l'objet d'une imputation sur le budget et celles qui sont constatées, en dehors de toute imputation budgétaire.§ 4. La différence entre les accroissements et les diminutions forme le résultat de variations du patrimoine de l'année.Celui-ci, cumulé avec les résultats des années antérieures, forme le compte général des variations du patrimoine.§ 5. La comparaison du bilan de l'année avec celui de l'année précédente indique le résultat des variations du patrimoine du centre intervenues pendant l'année..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: § 1er. Le compte des variations du patrimoine est présenté sous forme de tableaux regroupant les éléments enregistrés dans les comptes ouverts.§ 2. Il comprend :1° les sommes représentant les accroissements d'actif et les diminutions de passif qui sont la contrepartie des dépenses imputées sur le budget;2° les plus-values et les autres augmentations d'actif constatées, en dehors de toute imputation budgétaire;3° les sommes représentant les diminutions d'actif ou les augmentations de passif qui sont la contrepartie des recettes imputées sur le budget;4° les moins-values, les dépréciations, les disparitions d'actif ou les accroissements de passif constatés en dehors de toute imputation budgétaire.§ 3. Les opérations sont récapitulées en groupant en colonnes différentes, celles qui font l'objet d'une imputation sur le budget et celles qui sont constatées, en dehors de toute imputation budgétaire.§ 4. La différence entre les accroissements et les diminutions forme le résultat de variations du patrimoine de l'année.Celui-ci, cumulé avec les résultats des années antérieures, forme le compte général des variations du patrimoine.§ 5. La comparaison du bilan de l'année avec celui de l'année précédente indique le résultat des variations du patrimoine du centre intervenues pendant l'année.
+
+Question[French]:"
+2,"[context] Un couple est en instance de divorce et se dispute la propriété d'un bien acquis avec des fonds communs mais utilisé principalement par un seul époux pour son activité professionnelle. [question] Ce bien est-il considéré comme commun ou propre en vertu de l'article 1er de la loi ?",2247,"Given a statutory article: § 1er. Sont communs :1. les revenus de l'activité professionnelle de chacun des époux, tous revenus ou indemnités en tenant lieu ou les complétant, ainsi que les revenus provenant de l'exercice de mandats publics ou privés; l'indemnité de préavis et autres prestations auxquelles a droit un époux en raison de la rupture de son contrat de travail, pour la part de celle-ci correspondant au délai de préavis qui court pendant le régime;2. les fruits, revenus, intérêts de leurs biens propres;3. les biens donnés ou légués aux deux époux conjointement ou à l'un d'eux avec stipulation que ces biens seront communs;4. l'indemnité payée à un époux en réparation d'un dommage, dans la mesure où cette indemnité vise à réparer son incapacité ménagère ou économique durant le régime;5. la valeur patrimoniale des parts ou actions de société visées à l'article 1401, § 1er, 5;6. la valeur patrimoniale des biens professionnels qui ont été acquis par un des époux avec des fonds communs, si le droit à ces biens professionnels est propre en vertu de l'article 1401, § 1er, 6;7. la valeur économique de la clientèle qui a été constituée pendant le régime par un des époux dans le cadre de l'exercice de sa profession ou de l'exploitation de son entreprise, si le droit à cette clientèle est propre en vertu de l'article 1401, § 1er, 7;8. la prestation d'assurance liée à un contrat d'assurance sur la vie individuel qui a été conclu par un des époux pendant le régime, lorsqu'elle est due à un des époux pendant le régime. Si la prestation est versée sous forme de capital, la totalité de son montant est commune. Si la prestation est payée sous la forme d'une rente, sont communs les montants de la rente payés pendant le régime ainsi que la réserve qui correspond aux rentes encore dues après la dissolution du régime.§ 2. Sont également communs tous les biens dont il n'est pas prouvé qu'ils sont propres à l'un des époux par application d'une disposition de la loi..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: § 1er. Sont communs :1. les revenus de l'activité professionnelle de chacun des époux, tous revenus ou indemnités en tenant lieu ou les complétant, ainsi que les revenus provenant de l'exercice de mandats publics ou privés; l'indemnité de préavis et autres prestations auxquelles a droit un époux en raison de la rupture de son contrat de travail, pour la part de celle-ci correspondant au délai de préavis qui court pendant le régime;2. les fruits, revenus, intérêts de leurs biens propres;3. les biens donnés ou légués aux deux époux conjointement ou à l'un d'eux avec stipulation que ces biens seront communs;4. l'indemnité payée à un époux en réparation d'un dommage, dans la mesure où cette indemnité vise à réparer son incapacité ménagère ou économique durant le régime;5. la valeur patrimoniale des parts ou actions de société visées à l'article 1401, § 1er, 5;6. la valeur patrimoniale des biens professionnels qui ont été acquis par un des époux avec des fonds communs, si le droit à ces biens professionnels est propre en vertu de l'article 1401, § 1er, 6;7. la valeur économique de la clientèle qui a été constituée pendant le régime par un des époux dans le cadre de l'exercice de sa profession ou de l'exploitation de son entreprise, si le droit à cette clientèle est propre en vertu de l'article 1401, § 1er, 7;8. la prestation d'assurance liée à un contrat d'assurance sur la vie individuel qui a été conclu par un des époux pendant le régime, lorsqu'elle est due à un des époux pendant le régime. Si la prestation est versée sous forme de capital, la totalité de son montant est commune. Si la prestation est payée sous la forme d'une rente, sont communs les montants de la rente payés pendant le régime ainsi que la réserve qui correspond aux rentes encore dues après la dissolution du régime.§ 2. Sont également communs tous les biens dont il n'est pas prouvé qu'ils sont propres à l'un des époux par application d'une disposition de la loi.
+
+Question[French]:"
+3,"[context] Un couple a établi un contrat de mariage sans stipulation contraire. [question] Est-ce que l'époux peut conserver les pouvoirs de gestion sur les biens qu'il fait entrer dans le patrimoine commun sans les déterminer individuellement ?",2296,"Given a statutory article: Sauf stipulation contraire dans le contrat de mariage, l'époux qui fait entrer dans le patrimoine commun une quotité de ses biens présents ou futurs sans les déterminer individuellement, conserve sur eux les pouvoirs de gestion que lui attribue l'article 1425..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Sauf stipulation contraire dans le contrat de mariage, l'époux qui fait entrer dans le patrimoine commun une quotité de ses biens présents ou futurs sans les déterminer individuellement, conserve sur eux les pouvoirs de gestion que lui attribue l'article 1425.
+
+Question[French]:"
+4,"[context] Mon époux a fait une donation spéciale d'un bien en nature. [question] Est-ce que je peux recourir sur le reste du patrimoine commun si ce bien en nature fait l'objet d'une saisie pour des dettes communes ?",2299,"Given a statutory article: Les biens faisant l'objet du préciput peuvent être saisis pour le payement des dettes communes, sauf, lorsque le préciput porte sur des biens en nature, le recours de l'époux bénéficiaire sur le reste du patrimoine commun.Pareil recours peut également être exercé en cas d'aliénation par un des époux d'un bien en nature, objet du préciput..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Les biens faisant l'objet du préciput peuvent être saisis pour le payement des dettes communes, sauf, lorsque le préciput porte sur des biens en nature, le recours de l'époux bénéficiaire sur le reste du patrimoine commun.Pareil recours peut également être exercé en cas d'aliénation par un des époux d'un bien en nature, objet du préciput.
+
+Question[French]:"
+5,"[context] Un époux a utilisé des fonds provenant de la vente d'un bien propre pour investir dans des biens communs. [question] Doit-il rembourser ces fonds à la communauté selon la loi stipulée dans cet article ?",2277,"Given a statutory article: Il est dû récompense par le patrimoine commun a concurrence des fonds propres ou provenant de l'aliénation d'un bien propre qui sont entrés dans ce patrimoine, sans qu'il y ait eu emploi ou remploi et généralement toutes les fois qu'il a tiré profit des biens propres d'un époux..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Il est dû récompense par le patrimoine commun a concurrence des fonds propres ou provenant de l'aliénation d'un bien propre qui sont entrés dans ce patrimoine, sans qu'il y ait eu emploi ou remploi et généralement toutes les fois qu'il a tiré profit des biens propres d'un époux.
+
+Question[French]:"
+6,"[context] Je suis marié et je possède des biens propres. [question] Mon conjoint peut-il gérer mes biens propres sans mon consentement selon cet article de loi ?",2267,"Given a statutory article: Chaque époux a la gestion exclusive de son patrimoine propre, sans préjudice de l'article 215, § 1er.DISPOSITION COMMUNE A LA GESTION DES PATRIMOINES PROPRES ET COMMUNS..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Chaque époux a la gestion exclusive de son patrimoine propre, sans préjudice de l'article 215, § 1er.DISPOSITION COMMUNE A LA GESTION DES PATRIMOINES PROPRES ET COMMUNS.
+
+Question[French]:"
+7,"[context] Deux époux décident de se marier sous le régime de la communauté universelle. [question] En cas de dette contractée par l'un des époux, est-ce que la communauté universelle est responsable de cette dette ?",2293,"Given a statutory article: Lorsque les époux conviennent qu'il y aura entre eux communauté universelle, ils font entrer dans le patrimoine commun tous leurs biens présents et futurs à l'exception de ceux qui ont un caractère personnel et des droits exclusivement, attachés à la personne.La communauté universelle supporte toutes les dettes..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Lorsque les époux conviennent qu'il y aura entre eux communauté universelle, ils font entrer dans le patrimoine commun tous leurs biens présents et futurs à l'exception de ceux qui ont un caractère personnel et des droits exclusivement, attachés à la personne.La communauté universelle supporte toutes les dettes.
+
+Question[French]:"
+8,"[context] Deux personnes ont contribué à la formation d'un bien en commun. [question] Peut-on contraindre l'un des propriétaires à céder sa part du bien lorsqu'ils ne parviennent pas à un accord sur son utilisation ?",1487,"Given a statutory article: Lorsque la chose reste en commun entre les propriétaires des matières dont elle a été formée, elle doit être licitée au profit commun..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: Lorsque la chose reste en commun entre les propriétaires des matières dont elle a été formée, elle doit être licitée au profit commun.
+
+Question[French]:"
+9,"[context] Deux époux ont acquis un bien immeuble avant leur mariage. Après leur mariage, est-ce que ce bien immeuble fera automatiquement partie du patrimoine commun, même s'ils n'ont pas rédigé de convention matrimoniale à cet effet ?",2292,"Given a statutory article: § 1er.Les époux peuvent convenir que tout ou partie des biens présents et futurs, meubles ou immeubles, visés à l'article 1399, feront partie du patrimoine commun.1§ 2. Les futurs époux qui, avant de contracter mariage, acquièrent la pleine propriété d'un bien immeuble, peuvent, pour autant qu'ils soient, suite à cette acquisition, propriétaires indivis exclusifs et par parts égales de ce bien, faire figurer une déclaration d'apport anticipé dans l'acte d'acquisition de propriété. Du simple fait de leur mariage, ce bien immeuble fera alors partie du patrimoine commun, comme s'ils avaient stipulé l'apport dans leur convention matrimoniale.Les époux peuvent déroger à l'alinéa 1er dans leur convention matrimoniale.§ 3. Les dettes en cours au moment de l'apport et qui ont été contractées par l'époux apporteur afin d'acquérir, d'améliorer ou de conserver les biens apportés sont à charge du patrimoine commun, sous réserve de convention contraire..
+
+And here is a question: Peut-on saisir tous mes revenus ?, that the answer of question is not in the given statutory article.
+
+Your should first describe the context or information about a situation that establishes the basis for the question that follows and then ask 1 relevant question in French that can be answered by the given statutory law article.
+
+The question should not be longer than 100 words.
+
+Your question should have 60% of probability of being a yes/no question, 20% of probability of being a what/which question, 20% of probability of being other type of questions such as how/who/when,etc.
+
+Statutory Law Article: Le traitement d'une demande de rÃ¨glement extrajudiciaire d'un litige de consommation par le Service de mÃ©diation pour le consommateur est gratuit.,federal,Code de Droit Economique,RÃ¨glement extrajudiciaire des litiges de consommation,,: le service de mÃ©diation pour le consommateur,CompÃ©tences,Le rÃ¨glement extrajudiciaire des litiges de consommation,Traitement des litiges de consommation,""RÃ¨glement extrajudiciaire des litiges de consommation, : le service de mÃ©diation pour le consommateur, CompÃ©tences, Le rÃ¨glement extrajudiciaire des litiges de consommation, Traitement des litiges de consommation
+
+Question[French]: [context] Je dÃ©pose plainte auprÃ¨s d'un mÃ©diateur. L'entreprise est situÃ©e en Belgique. [question] Dois-je payer pour dÃ©poser plainte devant le mÃ©diateur pour le consommateur ?
+
+Statutory Law Article: Lorsque la paternitÃ© n'est pas Ã©tablie, ni en vertu des articles 315 ou 317, ni par une reconnaissance, et que la comaternitÃ© visÃ©e au chapitre 2\/1 n'est pas non plus Ã©tablie, elle peut l'Ãªtre par un jugement prononcÃ© par le tribunal de la famille, aux conditions fixÃ©es Ã  l'article 332quinquies.Si le dÃ©fendeur est mariÃ© et si l'enfant a Ã©tÃ© conÃ§u pendant le mariage par une femme dont il n'est pas l'Ã©poux, le jugement qui Ã©tablit la filiation doit Ãªtre signifiÃ© Ã  l'Ã©poux ou Ã  l'Ã©pouse. Jusqu'Ã  cette signification, il n'est opposable ni Ã  l'Ã©poux ou l'Ã©pouse, ni aux enfants nÃ©s du mariage avec le dÃ©fendeur ou adoptÃ©s par les deux Ã©poux.
+
+Question[French]: [context] Les parents ne sont pas mariÃ©s ensemble. [question] Peut-on m'obliger Ã  Ã©tablir un lien de filiation avec mon enfant si ni moi ni la mÃ¨re ne sommes mariÃ©s ?
+
+Statutory Law Article: § 1er.Les époux peuvent convenir que tout ou partie des biens présents et futurs, meubles ou immeubles, visés à l'article 1399, feront partie du patrimoine commun.1§ 2. Les futurs époux qui, avant de contracter mariage, acquièrent la pleine propriété d'un bien immeuble, peuvent, pour autant qu'ils soient, suite à cette acquisition, propriétaires indivis exclusifs et par parts égales de ce bien, faire figurer une déclaration d'apport anticipé dans l'acte d'acquisition de propriété. Du simple fait de leur mariage, ce bien immeuble fera alors partie du patrimoine commun, comme s'ils avaient stipulé l'apport dans leur convention matrimoniale.Les époux peuvent déroger à l'alinéa 1er dans leur convention matrimoniale.§ 3. Les dettes en cours au moment de l'apport et qui ont été contractées par l'époux apporteur afin d'acquérir, d'améliorer ou de conserver les biens apportés sont à charge du patrimoine commun, sous réserve de convention contraire.
+
+Question[French]:"

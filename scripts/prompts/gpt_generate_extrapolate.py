@@ -39,7 +39,7 @@ def generate_queries(df_wrong_pairs, save_path):
 
                 all_responses = [response.choices[i].message.content for i in range(len(response.choices))]
                 row['synthetic_question'] = all_responses[0]
-                df_row = row[['synthetic_question', 'Article_Id']].to_frame().T.rename(columns={'Article_Id': 'article_ids'})
+                df_row = row[['synthetic_question', 'Article_Id', 'prompt']].to_frame().T.rename(columns={'Article_Id': 'article_ids'})
                 # Append the Series as a new row to the DataFrame
                 final_df = pd.concat([final_df, df_row], ignore_index=True)
                 break
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     argparser.add_argument('--key', type=str, default="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")
     argparser.add_argument('--org_key', type=str, default="org-ViWmGBWyZw44MQvxg2djVAff")
     argparser.add_argument('--model', type=str, default='gpt-3.5-turbo-0125')
-    argparser.add_argument("--max_len", type=int, default=200)
+    argparser.add_argument("--max_len", type=int, default=500)
     args = argparser.parse_args()
 
     client = OpenAI(
