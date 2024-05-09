@@ -20,7 +20,6 @@ if __name__ == '__main__':
                         )
     parser.add_argument("--test_queries_df_path",
                         type=str,
-                        default=abspath(join(__file__, "../../../bsard/data/questions_fr_validation_step_by_step.csv")),
                         help="Path of validation data."
                         )
     args, _ = parser.parse_known_args()
