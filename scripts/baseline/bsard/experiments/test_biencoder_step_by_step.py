@@ -18,6 +18,11 @@ if __name__ == '__main__':
                         default=abspath(join(__file__, "../../../../../output/training/Nov03-16-00-33/22")),
                         help="Path of the model directory."
                         )
+    parser.add_argument("--test_queries_df_path",
+                        type=str,
+                        default=abspath(join(__file__, "../../../bsard/data/questions_fr_validation_step_by_step.csv")),
+                        help="Path of validation data."
+                        )
     args, _ = parser.parse_known_args()
 
     # 1. Load an already-trained BiEncoder.
@@ -25,7 +30,7 @@ if __name__ == '__main__':
     model = BiEncoder.load(checkpoint_path)
 
     # 2. Load the test set.
-    test_queries_df = pd.read_csv(abspath(join(__file__, "../../../bsard/data/questions_fr_validation_step_by_step.csv")))
+    test_queries_df = pd.read_csv(args.test_queries_df_path)
     documents_df = pd.read_csv(abspath(join(__file__, "../../../bsard/data/articles_fr.csv")))
     test_dataset = BSARDataset(test_queries_df, documents_df)
 
@@ -37,8 +42,8 @@ if __name__ == '__main__':
 
     # 4. Run trained model and compute scores.
     scores, wrong_pairs = evaluator(model=model,
-                       device=torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"),
-                       batch_size=512)
+                                    device=torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu"),
+                                    batch_size=512)
 
     # 5. Save results.
     os.makedirs(checkpoint_path, exist_ok=True)
