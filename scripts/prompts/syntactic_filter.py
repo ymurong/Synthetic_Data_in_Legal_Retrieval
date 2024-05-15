@@ -58,7 +58,7 @@ def semantic_filter(df_questions, threshold):
     return df_questions, df_questions_filtered
 
 
-def syntactic_filter(df_questions, topk):
+def syntactic_filter(df_questions, ratio):
     df_questions['tree_edit_distance'] = df_questions.apply(
         lambda row: compute_tree_edit_distance(nlp(row['Question']), nlp(row['synthetic_question']),
                                                zss_parser=zss_dependency_parser), axis=1)
@@ -66,7 +66,7 @@ def syntactic_filter(df_questions, topk):
         lambda row: len(row['synthetic_question'].split(" ")) - len(row['Question'].split(" ")), axis=1)
     df_questions['tree_edit_distance_norm'] = df_questions['tree_edit_distance'] - df_questions['length_diff']
     df_questions = df_questions.sort_values(by='tree_edit_distance_norm', ascending=True)
-    return df_questions, df_questions[:topk]
+    return df_questions, df_questions[:int(df_questions.shape[0] * ratio)]
 
 
 if __name__ == '__main__':
@@ -74,11 +74,11 @@ if __name__ == '__main__':
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step_by_step')
     argparser.add_argument('--extrapolated_queries', type=str, default='./data/extrapolate_queries.csv')
     argparser.add_argument('--wrong_pairs_to_extrapolate', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
-    argparser.add_argument('--syntactic_topk', type=int, default=100)
+    argparser.add_argument('--syntactic_ratio', type=float, default=0.8)
     argparser.add_argument('--semantic_threshold', type=float, default=0.8)
     args = argparser.parse_args()
 
-    syntactic_topk = args.syntactic_topk
+    syntactic_ratio = args.syntactic_ratio
     semantic_threshold = args.semantic_threshold
     save_path=f"{args.save_folder}/extrapolate_queries_filtered.csv"
 
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         from questions
     """).df()
 
-    df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk)
+    df_questions, df_questions_filtered = syntactic_filter(df_questions, ratio=syntactic_ratio)
     df_questions, df_questions_filtered = semantic_filter(df_questions, threshold=semantic_threshold)
     df_questions_filtered[['synthetic_question', 'article_ids']].to_csv(save_path, header=True, index=True, quoting=csv.QUOTE_NONNUMERIC, quotechar='"')
     print(f"{save_path} generated!")
