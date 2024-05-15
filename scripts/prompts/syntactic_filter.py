@@ -72,7 +72,7 @@ def syntactic_filter(df_questions, ratio):
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
     argparser.add_argument('--save_folder', type=str, default='./bsard/gpt-synthesizing/step_by_step')
-    argparser.add_argument('--extrapolated_queries', type=str, default='./data/extrapolate_queries.csv')
+    argparser.add_argument('--extrapolated_queries', type=str, default='./data/extrapolated_queries.csv')
     argparser.add_argument('--wrong_pairs_to_extrapolate', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
     argparser.add_argument('--syntactic_ratio', type=float, default=0.8)
     argparser.add_argument('--semantic_threshold', type=float, default=0.8)
@@ -80,12 +80,12 @@ if __name__ == '__main__':
 
     syntactic_ratio = args.syntactic_ratio
     semantic_threshold = args.semantic_threshold
-    save_path=f"{args.save_folder}/extrapolate_queries_filtered.csv"
+    save_path=f"{args.save_folder}/extrapolated_queries_filtered.csv"
 
     # merge data
     conn = duckdb.connect(database="questions.db", read_only=False)
     cur = conn.cursor()
-    cur.execute(f"CREATE OR REPLACE TABLE extrapolate_questions AS SELECT * FROM \"{args.extrapolate_queries}\";")
+    cur.execute(f"CREATE OR REPLACE TABLE extrapolate_questions AS SELECT * FROM \"{args.extrapolated_queries}\";")
     cur.execute(f"CREATE OR REPLACE TABLE wrong_pairs AS SELECT * FROM \"{args.wrong_pairs_to_extrapolate}\";")
     cur.execute("""
         CREATE OR REPLACE TABLE questions AS
