@@ -50,6 +50,7 @@ def semantic_similarity(doc1, doc2):
 # zss parser
 zss_dependency_parser = partial(token_to_zss_node, 'dep')
 
+
 def semantic_filter(df_questions, threshold):
     df_questions['semantic_similarity'] = df_questions.apply(
         lambda row: semantic_similarity(nlp(_remove_stop_words(nlp(row['Question']))),
@@ -58,7 +59,7 @@ def semantic_filter(df_questions, threshold):
     return df_questions, df_questions_filtered
 
 
-def syntactic_filter(df_questions, topk):
+def syntactic_filter(df_questions, topk, random=False):
     df_questions['tree_edit_distance'] = df_questions.apply(
         lambda row: compute_tree_edit_distance(nlp(row['Question']), nlp(row['synthetic_question']),
                                                zss_parser=zss_dependency_parser), axis=1)
@@ -66,6 +67,8 @@ def syntactic_filter(df_questions, topk):
         lambda row: len(row['synthetic_question'].split(" ")) - len(row['Question'].split(" ")), axis=1)
     df_questions['tree_edit_distance_norm'] = df_questions['tree_edit_distance'] - df_questions['length_diff']
     df_questions = df_questions.sort_values(by='tree_edit_distance_norm', ascending=True)
+    if random:
+        return df_questions, df_questions.sample(n_samples=topk)
     return df_questions, df_questions[:topk]
 
 
@@ -80,7 +83,7 @@ if __name__ == '__main__':
 
     syntactic_topk = args.syntactic_topk
     semantic_threshold = args.semantic_threshold
-    save_path=f"{args.save_folder}/extrapolated_queries_filtered.csv"
+    save_path = f"{args.save_folder}/extrapolated_queries_filtered.csv"
 
     # merge data
     conn = duckdb.connect(database="questions.db", read_only=False)
@@ -103,5 +106,8 @@ if __name__ == '__main__':
 
     df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk)
     df_questions, df_questions_filtered = semantic_filter(df_questions_filtered, threshold=semantic_threshold)
-    df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True, index=True, quoting=csv.QUOTE_NONNUMERIC, quotechar='"')
+    df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
+                                                                                               index=True,
+                                                                                               quoting=csv.QUOTE_NONNUMERIC,
+                                                                                               quotechar='"')
     print(f"{save_path} generated!")
