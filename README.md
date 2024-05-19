@@ -73,7 +73,10 @@ python scripts/baseline/bsard/experiments/run_zeroshot_evaluation.py \
 ```
 
 ####  GPL + mT5
-In order to reproduce the GPL + mT5 results, run:
+In order to reproduce the GPL + mT5 results, we need to use gpl tool.
+
+We first generate pseudo questions where the statutory articles have already been transformed to required format under ./scripts/gpl/data/bsard directory. We use doc2query/msmarco-french-mt5-base-v1 as query generator. For each passage we generate 1 query with a batch size setting to 2.
+
 ```python
 # GPL Generating queries
 import gpl
@@ -85,7 +88,9 @@ gpl.toolkit.qgen(
     bsz=2,
     qgen_prefix="qgen",
 )
-
+```
+Once we generated the pseudo queries, for each generated query and positive passage, we mined the similar but non relevant passages using 2 bi encoder retrievers.
+```python
 # Mining the similar but non relevant passage 
 gpl.toolkit.NegativeMiner(
     generated_path = "/content/drive/MyDrive/UVA/Thesis/training/gpl/bsard/generated",
@@ -96,6 +101,10 @@ gpl.toolkit.NegativeMiner(
     use_train_qrels=False,
 ).run()
 ```
+
+Afterwards, we use a fine-tuned cross-encoder model to calculate a margin score for the triplet given the triplet (generated query, positive,
+mined negative). Then, a bi-encoder would then be trained by using MarginMSELoss.
+
 ```bash
 # Train the gpl model
 python -m gpl.train \
@@ -117,6 +126,8 @@ python -m gpl.train \
 --qgen_prefix "qgen" \
 --use_amp   # Use this for efficient training if the machine supports AMP
 ```
+
+In the end, we evaluated the testset by applying the trained bi-encoder model.
 ```python
 # Evaluation the model
 step = 20000
@@ -132,6 +143,8 @@ gpl.toolkit.evaluate(
 ```
 
 ####  Full Supervised
+Here, we simply reproduce the results by following the BSARD Paper.
+
 ```bash
 # Train with human labeled data
 !python scripts/baseline/bsard/experiments/train_biencoder.py
@@ -141,224 +154,11 @@ gpl.toolkit.evaluate(
 
 ### 1st Stage Results Reproduction
 
-#### Synthesizing Data
-```bash
-!python scripts/prompts/gpt_generate.py \
---prompt scripts/prompts/bsard/{The_prompt_path} \
---save_folder /content/drive/MyDrive/UVA/Thesis/synthetic_data/{your_prompt_method_name} \
---corpus scripts/prompts/data/articles_fr.csv \
---key "xxxxxxxxx" \
---org_key "xxxxxxx" \
---frac "0.05" \
---iterations "20" \
---exclude_index ""
-```
+The first stage is to find the best prompting strategy. For each statutory article, we generate one pseudo query. Here, the frac means that we generate 5% of queries for each iteration. 
 
-#### Training
-```bash
-def create_incremental_data(method, end, start=0, base_path='/content/drive/MyDrive/UVA/Thesis/synthetic_data', ):
-  # List of CSV file paths
-  file_paths = file_paths = [
-        f"{base_path}/{method}/train-{i}.csv"
-        for i in range(start, end + 1)
-  ]
-
-  # Initialize an empty list to store DataFrames
-  dfs = []
-
-  # Loop through the file paths and read each file
-  for file_path in file_paths:
-      df = pd.read_csv(file_path)
-      dfs.append(df)
-
-  # Concatenate all DataFrames in the list into a single DataFrame
-  combined_df = pd.concat(dfs, ignore_index=True)
-
-  combined_df[["synthetic_question", "article_ids"]].to_csv(f"/content/drive/MyDrive/UVA/Thesis/synthetic_data/{method}/train-incremental.csv")
-
-# Define your variables
-end = 19
-method = 'simple-ask'
-output_suffix = end/10
-model = "camembert-base"
-output_path = f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/{output_suffix}"
-queries_filepath = f"/content/drive/MyDrive/UVA/Thesis/synthetic_data/{method}/train-incremental.csv"
-epochs = 90
-
-create_incremental_data(method=method,end=end)
-
-!python scripts/baseline/bsard/experiments/train_biencoder_syn.py \
-  --model {model} \
-  --output_path {output_path} \
-  --queries_filepath {queries_filepath} \
-  --epochs {epochs}
-```
-
-#### Evaluation
-```bash
-epoch_list = [9,19,29,39,49,59,69,79,89]
-for epoch in epoch_list:
-  !python scripts/baseline/bsard/experiments/test_biencoder.py --checkpoint_path {your checkpoint_path}
-```
+* [First Stage Experiment Code](scripts/experiments/first_stage.ipynb)
 
 
 ### 2nd Stage Results Reproduction
+* [Second Stage Experiment Code](scripts/experiments/second_stage.ipynb)
 
-```python
-import pandas as pd
-import json
-
-df_articles = pd.read_csv('scripts/baseline/bsard/data/articles_fr.csv')
-test_queries_df_path = 'scripts/baseline/bsard/data/questions_fr_validation_step_by_step_frac_4_6.csv'
-df_validation = pd.read_csv(test_queries_df_path)
-variation = 5
-
-def train(current_round, epochs):
-  print(f"### Starting training. Current Progress: {current_round} rounds / {target_round} rounds")
-  # Define your variables
-  end = 10 # start with 50% seed data
-  previous_round = current_round - 1
-  model = "camembert-base" # reinit parameters every round
-  method = 'describe_then_ask_qcc_fewshots'
-  output_path = f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}"
-  queries_filepath = f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/train.csv"
-
-  if current_round == 0:
-    # first iteration
-    create_incremental_data(method=method,end=end)
-    !cp /content/drive/MyDrive/UVA/Thesis/synthetic_data/{method}/train-incremental.csv /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/train.csv
-
-  df = pd.read_csv(queries_filepath)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("[context] ", '', regex=False).str.replace("[question] ", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("[Context] ", '', regex=False).str.replace("[Question] ", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("[contexte] ", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("[Contexte] ", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("Contexte : ", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("Situation :", '', regex=False)
-  df["synthetic_question"] = df["synthetic_question"].str.replace("Question :", '', regex=False)
-  df[["synthetic_question", "article_ids"]].to_csv(queries_filepath)
-
-  !python scripts/baseline/bsard/experiments/train_biencoder_syn_step_by_step.py \
-    --model {model} \
-    --output_path {output_path} \
-    --queries_filepath {queries_filepath} \
-    --epochs {epochs}
-
-
-def evaluate(current_round, epochs):
-  print(f"### Starting evaluation. Current Progress: {current_round} rounds / {target_round} rounds")
-  # Define your variables
-  end = 2 # start with 10% seed data
-  previous_round = current_round - 1
-  model = "camembert-base" # reinit parameters every round
-  method = 'describe_then_ask_qcc_fewshots'
-  output_path = f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}"
-  queries_filepath = f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/train.csv"
-
-  # evaluation on validation data
-  !python scripts/baseline/bsard/experiments/test_biencoder_step_by_step.py \
-  --checkpoint_path /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round} \
-  --test_queries_df_path {test_queries_df_path}
-  # evaluation on test data
-  !python scripts/baseline/bsard/experiments/test_biencoder.py --checkpoint_path /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}
-
-
-def prepare_for_extrapolation(current_round):
-  print(f"### Preparing for extrapolation. Current Progress: {current_round} rounds / {target_round} rounds")
-  method = 'describe_then_ask_qcc_fewshots'
-  previous_round= current_round - 1
-  top_k = 10 # only take top 10 wrongly retrieved pairs (can be ablated)
-
-  wrong_pairs_to_extrapolate_file = f'/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{previous_round}/wrong_pairs_to_extrapolate.json'
-  top_k_wrong_pairs = {}
-
-  # read wrong pairs file
-  with open(wrong_pairs_to_extrapolate_file) as json_file:
-      wrong_pairs = json.load(json_file)
-
-  # keep top_k article_ids
-  for query_id, doc_ids in wrong_pairs.items():
-    query = df_validation[df_validation['id'] == int(query_id)]['question'].values[0]
-    articles = []
-    for doc_id in doc_ids:
-        article = df_articles[df_articles['id'] == int(doc_id)]['article'].values[0]
-        if len(article.split(" ")) > 20:
-          articles.append(doc_id)
-        if len(articles) >= top_k:
-          break
-    top_k_wrong_pairs[query] = articles
-
-  top_k_wrong_pairs = [(key, value) for key, values in top_k_wrong_pairs.items() for value in values]
-  df_wrong_pairs = pd.DataFrame(top_k_wrong_pairs, columns=['Question', 'Article_Id'])
-
-  def update_article(row):
-      doc_id = row["Article_Id"]
-      article = df_articles[df_articles['id'] == int(doc_id)]['article'].values[0]
-      row["Article"] = article
-      return row
-
-  df_wrong_pairs = df_wrong_pairs.apply(update_article, axis=1)
-  df_wrong_pairs.to_csv(f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{previous_round}/wrong_pairs_to_extrapolate.csv")
-
-def extrapolate(current_round):
-  print(f"### Extrapolate wrong pairs for current round. Current Progress: {current_round} rounds / {target_round} rounds")
-  method = 'describe_then_ask_qcc_fewshots'
-  previous_round = current_round - 1
-  !mkdir -p /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}
-  !python scripts/prompts/gpt_generate_extrapolate.py \
-  --prompt scripts/prompts/bsard/extrapolate.txt \
-  --corpus /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{previous_round}/wrong_pairs_to_extrapolate.csv \
-  --save_folder /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round} \
-  --key "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" \
-  --org_key "org-ViWmGBWyZw44MQvxg2djVAff"
-
-def merge_data(current_round):
-  print(f"### Merging newly generated data to previous round data. Current Progress: {current_round} rounds / {target_round} rounds")
-  method = 'describe_then_ask_qcc_fewshots'
-  previous_round = current_round - 1
-  file_paths = file_paths = [
-        f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/extrapolated_queries_filtered.csv",
-        f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{previous_round}/train.csv"
-  ]
-  # Initialize an empty list to store DataFrames
-  dfs = []
-
-  # Loop through the file paths and read each file
-  for file_path in file_paths:
-      df = pd.read_csv(file_path)
-      dfs.append(df)
-
-  # Concatenate all DataFrames in the list into a single DataFrame
-  combined_df = pd.concat(dfs, ignore_index=True)
-  combined_df[["synthetic_question", "article_ids"]].to_csv(f"/content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/train.csv")
-  print(f"### Merged into /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/train.csv")
-
-def syntactic_filter(current_round, syntactic_topk, semantic_threshold):
-  print(f"### Filtering questions for current round. Current Progress: {current_round} rounds / {target_round} rounds")
-  method = 'describe_then_ask_qcc_fewshots'
-  previous_round = current_round - 1
-  !python scripts/prompts/syntactic_filter.py \
-  --extrapolated_queries /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round}/extrapolated_queries.csv \
-  --wrong_pairs_to_extrapolate /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{previous_round}/wrong_pairs_to_extrapolate.csv \
-  --save_folder /content/drive/MyDrive/UVA/Thesis/training/synthesizing/output/{method}/step_by_step{variation}/{current_round} \
-  --syntactic_topk {syntactic_topk} \
-  --semantic_threshold {semantic_threshold}
-
-epochs = 90
-current_round = 0
-target_round = 2
-
-while True:
-  try:
-      train(current_round = current_round, epochs=epochs)
-      evaluate(current_round = current_round, epochs=epochs)
-      current_round += 1
-      if current_round > target_round:
-        break
-      prepare_for_extrapolation(current_round = current_round)
-      extrapolate(current_round = current_round)
-      merge_data(current_round = current_round)
-  except Exception as e:
-      print(e)
-      break
-```

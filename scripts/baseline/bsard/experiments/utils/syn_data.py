@@ -92,3 +92,5 @@ class BSARDataset(Dataset):
         queries['article_id'] = queries['article_id'].astype(int)
         return (queries.sample(frac=1, random_state=42).reset_index(drop=True)
                 .to_records(index=False))
+
+

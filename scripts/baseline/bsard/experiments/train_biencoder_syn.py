@@ -278,9 +278,6 @@ class BiEncoderTrainer(object):
                 pprint.pprint(f'Evaluation: {scores}')
 
 
-
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--model",
