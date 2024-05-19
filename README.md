@@ -1,4 +1,4 @@
-# Syntactical Structure Matters: Enhancing French Statutory Article Retrieval with GPT-Engineered Synthetic Questions
+# Synthetic Data in Legal Retrieval: Improving Performance by Combining LLM-Based Synthesis and Step by Step Error Extrapolation
 
 The goal of this thesis is to enhance the french statutory article retrieval performance through optimized query generation in order to decrease the reliance on human provided labelled examples. The collection of large-scale, high-quality annotated datasets especially in closed domains like legal text is not only time-consuming but also entails significant expenses.  This has constituted a significant bottleneck for various legal IR and natural language processing (NLP) tasks.
 
