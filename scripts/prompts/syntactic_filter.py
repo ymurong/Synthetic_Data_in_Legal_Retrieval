@@ -60,6 +60,8 @@ def semantic_filter(df_questions, threshold):
 
 
 def syntactic_filter(df_questions, topk, random=False):
+    if random:
+        print("random is activated")
     df_questions['tree_edit_distance'] = df_questions.apply(
         lambda row: compute_tree_edit_distance(nlp(row['Question']), nlp(row['synthetic_question']),
                                                zss_parser=zss_dependency_parser), axis=1)
