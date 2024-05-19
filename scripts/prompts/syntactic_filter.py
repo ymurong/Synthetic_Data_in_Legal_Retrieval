@@ -107,7 +107,7 @@ if __name__ == '__main__':
         from questions
     """).df()
 
-    df_questions, df_questions_filtered = syntactic_filter(df_questions[:100], topk=syntactic_topk, random=random)
+    df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
     df_questions, df_questions_filtered = semantic_filter(df_questions_filtered, threshold=semantic_threshold)
     df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
                                                                                                index=True,
