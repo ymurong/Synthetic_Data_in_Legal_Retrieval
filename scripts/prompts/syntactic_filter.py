@@ -82,7 +82,7 @@ if __name__ == '__main__':
     argparser.add_argument('--wrong_pairs_to_extrapolate', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
     argparser.add_argument('--syntactic_topk', type=int, default=100)
     argparser.add_argument('--semantic_threshold', type=float, default=0.8)
-    argparser.add_argument('--do_random', action="store_true", default=True)
+    argparser.add_argument('--do_random', action="store_true", default=False)
     args = argparser.parse_args()
 
     syntactic_topk = args.syntactic_topk
