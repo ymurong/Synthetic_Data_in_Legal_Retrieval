@@ -58,7 +58,7 @@ def semantic_filter(df_questions, topk, random=False):
     df_questions = df_questions.sort_values(by='semantic_similarity', ascending=False).reset_index(drop=True)
     df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
-        return df_questions.sample(n=topk)
+        return df_questions.sample(n=int(topk))
     return df_questions[:topk]
 
 
@@ -74,7 +74,7 @@ def syntactic_filter(df_questions, topk, random=False):
     df_questions = df_questions.sort_values(by='tree_edit_distance_norm', ascending=True).reset_index(drop=True)
     df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
-        return df_questions.sample(n=topk)
+        return df_questions.sample(n=int(topk))
     return df_questions[:topk]
 
 
