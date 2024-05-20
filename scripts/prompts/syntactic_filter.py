@@ -113,10 +113,10 @@ if __name__ == '__main__':
     """).df()
 
     if syntactic_topk != -1:
-        df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
+        df_questions = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
     if semantic_topk != -1:
-        df_questions_filtered = semantic_filter(df_questions_filtered, topk=semantic_topk, random=random)
-    df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
+        df_questions = semantic_filter(df_questions, topk=semantic_topk, random=random)
+    df_questions[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
                                                                                                index=True,
                                                                                                quoting=csv.QUOTE_NONNUMERIC,
                                                                                                quotechar='"')
