@@ -51,12 +51,14 @@ def semantic_similarity(doc1, doc2):
 zss_dependency_parser = partial(token_to_zss_node, 'dep')
 
 
-def semantic_filter(df_questions, threshold):
+def semantic_filter(df_questions, topk, random=False):
     df_questions['semantic_similarity'] = df_questions.apply(
         lambda row: semantic_similarity(nlp(_remove_stop_words(nlp(row['Question']))),
                                         nlp(_remove_stop_words(nlp(row['synthetic_question'])))), axis=1)
-    df_questions_filtered = df_questions[df_questions['semantic_similarity'] < threshold]
-    return df_questions, df_questions_filtered
+    df_questions = df_questions.sort_values(by='semantic_similarity', ascending=False).reset_index(drop=True)
+    if random:
+        return df_questions, df_questions.sample(n=topk)
+    return df_questions, df_questions[:topk]
 
 
 def syntactic_filter(df_questions, topk, random=False):
@@ -81,12 +83,12 @@ if __name__ == '__main__':
     argparser.add_argument('--extrapolated_queries', type=str, default='./data/extrapolated_queries.csv')
     argparser.add_argument('--wrong_pairs_to_extrapolate', type=str, default='./data/wrong_pairs_to_extrapolate.csv')
     argparser.add_argument('--syntactic_topk', type=int, default=100)
-    argparser.add_argument('--semantic_threshold', type=float, default=0.8)
+    argparser.add_argument('--semantic_topk', type=float, default=100)
     argparser.add_argument('--do_random', action="store_true", default=False)
     args = argparser.parse_args()
 
     syntactic_topk = args.syntactic_topk
-    semantic_threshold = args.semantic_threshold
+    semantic_topk = args.semantic_topk
     save_path = f"{args.save_folder}/extrapolated_queries_filtered.csv"
     random = args.do_random
 
@@ -109,8 +111,12 @@ if __name__ == '__main__':
         from questions
     """).df()
 
-    df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
-    df_questions, df_questions_filtered = semantic_filter(df_questions_filtered, threshold=semantic_threshold)
+    df_questions_filtered = df_questions.copy(),
+
+    if syntactic_topk != -1:
+        df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
+    if semantic_topk != -1:
+        df_questions, df_questions_filtered = semantic_filter(df_questions_filtered, topk=semantic_topk, random=random)
     df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
                                                                                                index=True,
                                                                                                quoting=csv.QUOTE_NONNUMERIC,
