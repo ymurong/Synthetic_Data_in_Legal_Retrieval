@@ -56,9 +56,10 @@ def semantic_filter(df_questions, topk, random=False):
         lambda row: semantic_similarity(nlp(_remove_stop_words(nlp(row['Question']))),
                                         nlp(_remove_stop_words(nlp(row['synthetic_question'])))), axis=1)
     df_questions = df_questions.sort_values(by='semantic_similarity', ascending=False).reset_index(drop=True)
+    df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
-        return df_questions, df_questions.sample(n=topk)
-    return df_questions, df_questions[:topk]
+        return df_questions.sample(n=topk)
+    return df_questions[:topk]
 
 
 def syntactic_filter(df_questions, topk, random=False):
@@ -73,8 +74,8 @@ def syntactic_filter(df_questions, topk, random=False):
     df_questions = df_questions.sort_values(by='tree_edit_distance_norm', ascending=True).reset_index(drop=True)
     df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
-        return df_questions, df_questions.sample(n=topk)
-    return df_questions, df_questions[:topk]
+        return df_questions.sample(n=topk)
+    return df_questions[:topk]
 
 
 if __name__ == '__main__':
@@ -111,12 +112,10 @@ if __name__ == '__main__':
         from questions
     """).df()
 
-    df_questions_filtered = df_questions.copy(),
-
     if syntactic_topk != -1:
-        df_questions, df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
+        df_questions_filtered = syntactic_filter(df_questions, topk=syntactic_topk, random=random)
     if semantic_topk != -1:
-        df_questions, df_questions_filtered = semantic_filter(df_questions_filtered, topk=semantic_topk, random=random)
+        df_questions_filtered = semantic_filter(df_questions_filtered, topk=semantic_topk, random=random)
     df_questions_filtered[['synthetic_question', 'article_ids']].reset_index(drop=True).to_csv(save_path, header=True,
                                                                                                index=True,
                                                                                                quoting=csv.QUOTE_NONNUMERIC,
