@@ -52,6 +52,8 @@ zss_dependency_parser = partial(token_to_zss_node, 'dep')
 
 
 def semantic_filter(df_questions, topk, random=False):
+    if random:
+        print("random is activated")
     df_questions['semantic_similarity'] = df_questions.apply(
         lambda row: semantic_similarity(nlp(_remove_stop_words(nlp(row['Question']))),
                                         nlp(_remove_stop_words(nlp(row['synthetic_question'])))), axis=1)
@@ -59,7 +61,7 @@ def semantic_filter(df_questions, topk, random=False):
     df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
         return df_questions.sample(n=int(topk))
-    return df_questions[:topk]
+    return df_questions[:int(topk)]
 
 
 def syntactic_filter(df_questions, topk, random=False):
@@ -75,7 +77,7 @@ def syntactic_filter(df_questions, topk, random=False):
     df_questions.drop_duplicates(subset=['synthetic_question', 'article_ids'], keep='first').reset_index(drop=True)
     if random:
         return df_questions.sample(n=int(topk))
-    return df_questions[:topk]
+    return df_questions[:int(topk)]
 
 
 if __name__ == '__main__':
