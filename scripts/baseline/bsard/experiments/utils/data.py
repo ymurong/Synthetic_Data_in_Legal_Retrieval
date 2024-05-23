@@ -85,7 +85,7 @@ class BSARDataset(Dataset):
                 .apply(pd.Series)
                 .stack()
                 .reset_index()
-                .drop(['category', 'subcategory', 'extra_description', 'level_6','question'], axis=1)
+                .drop(['category', 'subcategory', 'extra_description', 'level_6','question'], errors='ignore', axis=1)
                 .rename(columns={0: 'article_id', 'id': 'question_id'})[['question_id','article_id']]
                 .apply(pd.to_numeric)
                 .sample(frac=1, random_state=42).reset_index(drop=True)
