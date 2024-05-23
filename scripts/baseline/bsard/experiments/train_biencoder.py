@@ -4,6 +4,7 @@ from tqdm import tqdm
 from datetime import datetime
 from os.path import abspath, join
 from typing import List, Dict, Tuple, Optional
+import pprint
 
 import random
 import numpy as np
@@ -263,16 +264,21 @@ class BiEncoderTrainer(object):
                 # Update global step.
                 global_step += 1
 
-            # Evaluate model after each epoch.
-            self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3, epoch=epoch,
-                           writer=self.writer)
-
-            # Save the model.
-            self.model.save(join(self.output_path, f"{epoch}"))
-
             # Report average loss and number of correct predictions.
             print(
                 f'Epoch {epoch}: Train loss {(train_loss / num_batches):>8f} - Accuracy {(train_correct / num_samples * 100):>0.1f}%')
+
+            if (epoch + 1) % 10 == 0:
+                # Evaluate model after each 10 epoch.
+                scores = self.evaluator(model=self.model, device=self.device, batch_size=self.batch_size * 3,
+                                        epoch=epoch,
+                                        writer=self.writer)
+
+                pprint.pprint(f'Train Evaluation: {scores}')
+
+            if epoch == self.epochs - 1:
+                # only save the model when it is the last round
+                self.model.save(self.output_path)
 
 
 if __name__ == '__main__':
