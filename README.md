@@ -20,10 +20,6 @@ The specific contributions of the proposed research are as follows:
 
 (3) We propose a method on legal question synthesis through the combination of LLM prompting and step by step error extrapolation in statutory article information retrieval.
 
-## Project Folder Structure
-
-This project has the following folder structure:
-
 
 ## Project Setup
 
