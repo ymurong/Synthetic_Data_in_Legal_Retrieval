@@ -162,3 +162,8 @@ The first stage is to find the best prompting strategy. For each statutory artic
 ### 2nd Stage Results Reproduction
 * [Second Stage Experiment Code](scripts/experiments/second_stage.ipynb)
 
+## Resources
+[Optimized french synthetic queries for the statutory article retrieval task](resources/best_stage2_synthetic_dataset.csv)
+
+
+
