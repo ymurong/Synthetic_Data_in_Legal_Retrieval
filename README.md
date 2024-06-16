@@ -8,9 +8,9 @@ The project aims to answer the following research question:
 
     * SRQ1 What are the differences between current doc2query synthetic questions and real human questions from a syntactical perspective? 
 
-    * SRQ2 What are the prompting techniques that can enhance the accuracy of statutory article retrieval? 
+    * SRQ2 Which prompting method can enhance the accuracy of statutory article retrieval and to what extent cant it enhance that accuracy? 
 
-    * SRQ3 How error extrapolation influence the accuracy of statutory article retrieval ?
+    * SRQ3 How and to what extent can error extrapolation influence the accuracy of statutory article retrieval ?
 
 The specific contributions of the proposed research are as follows:
 
